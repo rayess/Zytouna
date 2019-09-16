@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
 import {imgbutton,collar,bg2} from '../../assets/images';
 import{GoBackButton} from '../../components';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
 
 import styles from './sign-in-fb-google-screen-styles';
@@ -16,10 +17,23 @@ class SignInFbAndGoogle extends React.Component {
       <View style={styles.maincontainer}>
       <View style={styles.secondarycontainer}>
       <Image source={collar} />
-      <TouchableOpacity>
-      <Image source={imgbutton}  />
-      <Text style={styles.textButton}>SIGN IN WITH FACEBOOK</Text>
-      </TouchableOpacity>
+      <LoginButton
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                console.log("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                console.log("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    console.log(data.accessToken.toString())
+                  }
+                )
+              }
+            }
+          }
+          onLogoutFinished={() => console.log("logout.")}/>
       </View>
       <View style={styles.secondarycontainer}>
       <Image source={collar}/>

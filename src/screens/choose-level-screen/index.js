@@ -28,8 +28,13 @@ const ChooseLevel=()=>{
     <Text style={styles.levelnumberstyle}> 3 </Text>
     </TouchableOpacity>
     </View>
+    <TouchableOpacity>
+    <Image source={imgbutton}  />
+    <Text style={styles.textButton}>SIGN IN WITH FACEBOOK</Text>
+    </TouchableOpacity>
     </View>
     </ImageBackground>
+
   );
 };
 export default ChooseLevel;

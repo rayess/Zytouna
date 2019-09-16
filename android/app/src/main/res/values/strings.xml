@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Zytouna</string>
+    <string name="facebook_app_id">Zytounafb</string>
 </resources>
