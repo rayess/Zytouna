@@ -71,6 +71,12 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Baloo-Regular.ttf</string>
+		<string>Duepuntozero-Black.ttf</string>
+		<string>Duepuntozero-Bold.ttf</string>
+		<string>Duepuntozero-ExtraBold.ttf</string>
+		<string>Duepuntozero-ExtraLight.ttf</string>
+		<string>Duepuntozero-Regular.ttf</string>
 	</array>
 </dict>
 </plist>
