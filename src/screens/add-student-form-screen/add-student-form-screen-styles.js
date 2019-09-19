@@ -3,11 +3,21 @@ import colors from '../../assets/color';
 export default StyleSheet.create({
   maincontainer:{
     flex:1,
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    paddingTop: 40
+    flexDirection: 'row',
+    padding: 20
   },
+  formcontainer:{
+    flex:3,
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  buttoncontainer:{
+    flex:1,
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+
   textplaceholder:{
     fontFamily: 'Duepuntozero-ExtraLight',
     fontSize: 15,
@@ -37,9 +47,7 @@ export default StyleSheet.create({
     color: colors.orange,
   },
   takephotostyle:{
-    justifyContent: 'flex-start',
+    flex:1,
     alignItems: 'flex-start',
-    paddingTop: 20,
-    paddingLeft: 20
   },
 })

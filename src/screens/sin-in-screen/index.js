@@ -6,35 +6,15 @@ import * as actions from '../../redux/actions';
 import {imgbutton,collar,bg3,textinputbutton,bleubutton,crab} from '../../assets/images';
 import {GoBackButton} from '../../components';
 import colors from '../../assets/color';
-import styles from './sign-with-email-styles-screen';
-import Modal from 'react-native-modal';
+import styles from './sign-in-screen-styles';
 
 
-class SignWithEmail extends React.Component {
+class SignInUser extends React.Component {
   render() {
     return(
       <ImageBackground source={bg3} style={{width: '100%', height: '100%'}}>
       <GoBackButton  pressFunction={()=>{this.props.navigation.goBack()}}/>
-      <View>
-        <Modal isVisible={this.props.loading}>
-          <View style={{ flex: 1 }}>
-            <ActivityIndicator size="large" />
-          </View>
-        </Modal>
-      </View>
       <View style={styles.mainContainer}>
-      <View style={styles.secondaryContainer}>
-      <Image source={collar} />
-      <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
-      <TextInput
-          style={styles.textinputcontainer}
-          placeholder='full name'
-          placeholderTextColor={colors.orange}
-          value={this.props.name}
-          onChangeText={(text) => this.props.userstate({prop:'name',value:text})}
-        />
-        </ImageBackground>
-      </View>
       <View style={styles.secondaryContainer}>
       <Image source={collar} />
       <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
@@ -63,11 +43,17 @@ class SignWithEmail extends React.Component {
       <TouchableOpacity style={{paddingLeft: 60}}
       onPress={()=>{
         const {name,email,password} =this.props;
-        this.props.saveuser({name,email,password});
+        this.props.loginuser({email,password});
         this.props.navigation.navigate('addstudentform');
       }} >
       <Image source={bleubutton} style={{width: 300, height: 60}}/>
       <Text style={styles.buttoncontainer}>sign up</Text>
+      </TouchableOpacity>
+      </View>
+      <View style={styles.forgetpasswordContainer}>
+      <Image source={crab} style={{width:20,height: 20}}/>
+      <TouchableOpacity>
+      <Text style={styles.forgetpasswordtext}> forget your password</Text>
       </TouchableOpacity>
       </View>
       </ImageBackground>
@@ -86,4 +72,4 @@ class SignWithEmail extends React.Component {
   export default connect(
     mapStateToProps,
     actions,
-  )(SignWithEmail);
+  )(SignInUser);

@@ -27,12 +27,15 @@ class SignUpScreen extends React.Component {
             <Text style={styles.textTitle}>{'Welcome'}</Text>
             <Text style={styles.textSubTitle}>{'TO ZAYTOUNA'}</Text>
             <Text style={styles.textSubTitle}> {'ADVENTURE APP'}</Text>
-            <View style={{flexDirection: 'row', paddingTop: 20}}>
-              <Image source={collar} />
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Signfbgle')}>
+            <View style={{flexDirection: 'column', paddingTop: 20}}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('signinuser')}>
                 <Image source={imgbutton} />
-                <Text style={styles.textButton}>SIGN UP</Text>
+                <Text style={styles.textButton}>SIGN IN</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Signfbgle')}>
+                <Image source={imgbutton} />
+                <Text style={styles.textButton}>NEW ACCOUNT</Text>
               </TouchableOpacity>
             </View>
           </View>

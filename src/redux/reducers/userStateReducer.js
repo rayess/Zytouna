@@ -1,24 +1,54 @@
 import {USERCHANGE} from '../actions-types/UserChange';
-import {USERSAVE} from '../actions-types/userSave';
+import {USERSAVE,LOGIN_USER_FAIL,LOGIN_USER_SUCCES,USERLOGIN} from '../actions-types';
 const initialState = {
   name:'',
   email:'',
-  password:''
+  password:'',
+  user:null,
+  error:'',
+  loading:false
 };
 const userStateReducer = (state = initialState, action) => {
-  console.log(state);
+  console.log(action);
   switch (action.type) {
     case USERCHANGE: {
-      return {
-        ...state,
-        [action.payload.prop]: [action.payload.value]
-      };
+      if(action.payload.prop=='name'){
+        return {
+          ...state,name:action.payload.value
+        }
+      }
+      if(action.payload.prop=='email'){
+        return {
+          ...state,email:action.payload.value
+        }
+      }
+      if(action.payload.prop=='password'){
+        return {
+          ...state,password:action.payload.value
+        }
+      }
+
     }
     case USERSAVE:{
       return {
         ...state,
-        [action.payload.prop]: [action.payload.value]
+        loading:true
+      }
+    }
+    case LOGIN_USER_FAIL:{
+      return{
+        ...state,error:action.payload,loading:false
       };
+    }
+    case LOGIN_USER_SUCCES:{
+      return{
+        ...state,...initialState,user:action.payload
+      }
+    }
+    case USERLOGIN:{
+      return{
+        ...state,...initialState,user:action.payload
+      }
     }
     default: {
       return state;

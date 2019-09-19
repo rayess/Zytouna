@@ -3,7 +3,7 @@ import {View,Text,Image,ImageBackground,TouchableOpacity,TextInput,Picker} from 
 import {connect} from 'react-redux';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as actions from '../../redux/actions';
-import {imgbutton,collar,bg3,textinputbutton,bleubutton,takephoto} from '../../assets/images';
+import {imgbutton,collar,bg3,textinputbutton,bleubutton,takephoto,okform,addstudent} from '../../assets/images';
 import colors from '../../assets/color';
 import ImagePicker from 'react-native-image-picker';
 import { Avatar } from "react-native-elements";
@@ -33,10 +33,11 @@ pickImageHandler = () => {
   render() {
     return(
       <ImageBackground source={bg3} style={{width: '100%', height: '100%'}}>
+      <View style={styles.maincontainer}>
       <View style={styles.takephotostyle}>
       <Avatar rounded size='large' source={this.state.pickedImage}  onPress={this.pickImageHandler} />
       </View>
-      <View style={styles.maincontainer}>
+      <View style={styles.formcontainer}>
       <View style={{flexDirection: 'row'}}>
       <Image source={collar} style={{alignSelf: 'center'}} />
       <View style={{flexDirection: 'column'}}>
@@ -79,7 +80,16 @@ pickImageHandler = () => {
          </ImageBackground>
          </View>
          </View>
-      </View>
+         </View>
+         <View style={styles.buttoncontainer}>
+         <TouchableOpacity >
+        <Image source={addstudent} />
+        </TouchableOpacity >
+        <TouchableOpacity >
+        <Image source={okform} />
+        </TouchableOpacity >
+         </View>
+        </View>
         </ImageBackground>
       );
 }

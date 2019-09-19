@@ -13,3 +13,5 @@ export backfleche from './fleshe.png';
 export takephoto from './addphoto.png';
 export bg5 from './bg5.png';
 export cloud from './cloud.png';
+export addstudent from './add-student.png';
+export okform from './finish.png';

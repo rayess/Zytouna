@@ -3,11 +3,11 @@ import {StatusBar} from 'react-native';
 
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
-import {SplashScreen,SignUpScreen,SignInFbAndGoogle,SignWithEmail,AddStudent,AddStudentForm,ChooseLevel} from './screens';
+import {SplashScreen,SignUpScreen,SignInFbAndGoogle,SignWithEmail,AddStudent,AddStudentForm,ChooseLevel,SignInUser} from './screens';
 import {store, persistor} from './redux/store';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import{GoBackButton} from './components';
+import firebase from 'firebase';
 
 const AppNavigator = createStackNavigator(
   {
@@ -15,6 +15,7 @@ const AppNavigator = createStackNavigator(
     Signfbgle: SignInFbAndGoogle,
     signemail:SignWithEmail,
     addstudentform:AddStudentForm,
+    signinuser:SignInUser
   },
   {
   defaultNavigationOptions: {
@@ -25,7 +26,21 @@ const AppNavigator = createStackNavigator(
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default function App() {
+class App extends React.Component {
+  componentWillMount() {
+    firebase.initializeApp(
+            {
+              apiKey: 'AIzaSyDS6BxEiSPcNkDRAmDoEZqNzFIFPgC5dc0',
+              authDomain: 'zaytouna-6e487.firebaseapp.com',
+              databaseURL: 'https://zaytouna-6e487.firebaseio.com',
+              projectId: 'zaytouna-6e487',
+              storageBucket: 'zaytouna-6e487.appspot.com',
+              messagingSenderId: '893199681484',
+              appId: '1:893199681484:web:12040548dd20e75cfabf69'
+        });
+      }
+
+render(){
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -35,3 +50,5 @@ export default function App() {
     </Provider>
   );
 }
+}
+export default App;
