@@ -1,36 +1,54 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../assets/color';
 export default StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
+    width: '64%',
+    flexDirection: 'column',
+    alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
-
   },
-  secondaryContainer:{
-    flexDirection: 'column',
-    paddingLeft: 40,
-
-  },
-  textTitle:{
-    color:'white',
-    fontSize: 50,
+  textTitle: {
+    color: 'white',
+    fontSize: 56,
     fontFamily: 'Duepuntozero-ExtraBold',
-    alignSelf: 'center'
+    textAlign: 'center',
   },
-  textSubTitle:{
-    color:'white',
-    fontSize: 30,
+  textSubTitle: {
+    color: 'white',
+    fontSize: 28,
     fontFamily: 'Duepuntozero-Bold',
-    alignSelf: 'center'
+    textAlign: 'center',
+    lineHeight: 20,
+    letterSpacing: 2,
+    lineHeight: 36,
+    marginBottom: 24,
+  },
+  buttonContainer: {
+    width: '100%',
+    marginBottom: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonIcon: {
+    height: 56,
+    width: 56,
+  },
+  button: {
+    height: 56,
+    width: '50%',
+    backgroundColor: 'white',
+    marginLeft: 12,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textButton: {
     color: colors.orange,
-    fontSize: 30,
-    fontFamily: 'Duepuntozero-Bold',
-    position: 'absolute',
-    alignSelf: 'center',
-    top :30
-  }
+    fontSize: 24,
+    fontFamily: 'Duepuntozero-ExtraBold',
+    marginTop: 3,
+  },
 });

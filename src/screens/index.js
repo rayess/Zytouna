@@ -1,18 +1,21 @@
 import SplashScreen from './splash-screen';
-export {SplashScreen};
 import SignUpScreen from './sign-up-screen';
-export {SignUpScreen};
 import SignInFbAndGoogle from './sign-in-fb-google-screen';
-export {SignInFbAndGoogle};
 import SignWithEmail from './sign-with-email-screen';
-export {SignWithEmail};
 import AddStudent from './add-student-screen';
-export {AddStudent};
 import AddStudentForm from './add-student-form-screen';
-export {AddStudentForm};
 import ChooseLevel from './choose-level-screen';
-export {ChooseLevel};
 import ChooseLevelAndChapterSwiper from './choose-level-and-chapter-swiper';
-export {ChooseLevelAndChapterSwiper};
 import SignInUser from './sin-in-screen';
-export {SignInUser};
+
+export {
+  SplashScreen,
+  SignInUser,
+  ChooseLevelAndChapterSwiper,
+  ChooseLevel,
+  AddStudentForm,
+  AddStudent,
+  SignWithEmail,
+  SignInFbAndGoogle,
+  SignUpScreen,
+};

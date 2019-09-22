@@ -1,45 +1,33 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../assets/color';
 export default StyleSheet.create({
-
-  mainContainer:{
-    flex:1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+  container: {
+    width: '100%',
+    height: '100%',
   },
-  secondaryContainer:{
-    flexDirection: 'row',
-    paddingBottom:10
-  },
-  forgetpasswordContainer:{
-    flexDirection: 'row',
-    alignItems: 'center',
+  submitButton: {
+    height: 56,
+    width: '35%',
+    backgroundColor: colors.blueSky,
+    borderRadius: 24,
+    alignSelf: 'center',
+    marginLeft: 68,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+    elevation: 11,
+    alignContent: 'center',
     justifyContent: 'center',
-    paddingBottom:  10
   },
-  textinputcontainer:{
-    position:'absolute',
-    alignSelf: 'center',
-    top:20,
-    fontSize: 20,
-    fontFamily: 'Duepuntozero-Bold',
-    color: colors.orange
-
+  textButton: {
+    color: 'white',
+    fontSize: 24,
+    fontFamily: 'Duepuntozero-ExtraBold',
+    marginTop: 3,
+    textAlign: 'center',
   },
-  buttoncontainer:{
-    position:'absolute',
-    alignSelf: 'center',
-    fontSize: 20,
-    fontFamily: 'Duepuntozero-Bold',
-    color: colors.white,
-    top:20,
-
-  },
-  forgetpasswordtext:{
-    alignSelf: 'center',
-    fontSize: 10,
-    fontFamily: 'Duepuntozero-Black',
-    color: colors.orange,
-  }
 });

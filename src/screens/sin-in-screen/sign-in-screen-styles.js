@@ -1,45 +1,57 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../assets/color';
 export default StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  submitButton: {
+    height: 56,
+    width: '35%',
+    backgroundColor: colors.blueSky,
+    borderRadius: 24,
+    alignSelf: 'center',
+    marginLeft: 68,
+    marginBottom: 60,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+    elevation: 11,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  textButton: {
+    color: 'white',
+    fontSize: 24,
+    fontFamily: 'Duepuntozero-ExtraBold',
+    marginTop: 3,
+    textAlign: 'center',
+  },
 
-  mainContainer:{
-    flex:1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  secondaryContainer:{
-    flexDirection: 'row',
-    paddingBottom:10
-  },
-  forgetpasswordContainer:{
+  forgetContainer: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom:  10
   },
-  textinputcontainer:{
-    position:'absolute',
-    alignSelf: 'center',
-    top:20,
-    fontSize: 20,
-    fontFamily: 'Duepuntozero-Bold',
-    color: colors.orange
+  forgetIcon: {
+    height: 40,
+    width: 40,
+  },
 
-  },
-  buttoncontainer:{
-    position:'absolute',
-    alignSelf: 'center',
-    fontSize: 20,
+  textForget: {
+    marginLeft: 12,
+    color: colors.marron,
+    fontSize: 18,
     fontFamily: 'Duepuntozero-Bold',
-    color: colors.white,
-    top:20,
-
+    marginTop: 3,
   },
-  forgetpasswordtext:{
-    alignSelf: 'center',
-    fontSize: 10,
-    fontFamily: 'Duepuntozero-Black',
-    color: colors.orange,
-  }
 });

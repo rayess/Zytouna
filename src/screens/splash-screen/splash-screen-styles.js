@@ -1,5 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../assets/color';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -9,8 +11,11 @@ export default StyleSheet.create({
   },
   title: {
     color: colors.bleu0,
-    fontSize: 30,
+    fontSize: 36,
     fontFamily: 'Duepuntozero-Bold',
-    lineHeight: 30,
-  }
+  },
+  logo: {
+    width: '50%',
+    marginTop: 20,
+  },
 });

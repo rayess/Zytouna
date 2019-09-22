@@ -5,4 +5,5 @@ export default {
   gris: '#848484',
   bleu: '#7AAFAE',
   white: '#FFFFFF',
+  blueSky: '#54B0E3',
 };

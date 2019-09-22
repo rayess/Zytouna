@@ -1,89 +1,69 @@
-import React, {Component} from 'react';
-import {View, Text,Image,ImageBackground,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
+import React from 'react';
+import {Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as actions from '../../redux/actions';
-import {imgbutton,collar,bg3,textinputbutton,bleubutton,crab} from '../../assets/images';
-import {GoBackButton} from '../../components';
-import colors from '../../assets/color';
+import {BG3} from '../../assets/_images';
+import {GoBackButton, UserInput} from '../../components';
 import styles from './sign-with-email-styles-screen';
-import Modal from 'react-native-modal';
-
 
 class SignWithEmail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fullname: '',
+      email: '',
+      password: '',
+    };
+  }
+
   render() {
-    return(
-      <ImageBackground source={bg3} style={{width: '100%', height: '100%'}}>
-      <GoBackButton  pressFunction={()=>{this.props.navigation.goBack()}}/>
-      <View>
-        <Modal isVisible={this.props.loading}>
-          <View style={{ flex: 1 }}>
-            <ActivityIndicator size="large" />
-          </View>
-        </Modal>
-      </View>
-      <View style={styles.mainContainer}>
-      <View style={styles.secondaryContainer}>
-      <Image source={collar} />
-      <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
-      <TextInput
-          style={styles.textinputcontainer}
-          placeholder='full name'
-          placeholderTextColor={colors.orange}
-          value={this.props.name}
-          onChangeText={(text) => this.props.userstate({prop:'name',value:text})}
+    return (
+      <ImageBackground source={BG3} style={styles.container}>
+        <GoBackButton
+          pressFunction={() => {
+            this.props.navigation.goBack();
+          }}
         />
-        </ImageBackground>
-      </View>
-      <View style={styles.secondaryContainer}>
-      <Image source={collar} />
-      <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
-      <TextInput
-          style={styles.textinputcontainer}
-          placeholder='email'
-          placeholderTextColor={colors.orange}
-          value={this.props.email}
-          onChangeText={(text) => this.props.userstate({prop:'email',value:text})}
+        <UserInput
+          onChangeText={fullname => this.setState({fullname})}
+          value={this.state.fullname}
+          placeholder={'full name'}
+          textContentType={'name'}
         />
-        </ImageBackground>
-      </View>
-      <View style={styles.secondaryContainer}>
-      <Image source={collar}/>
-      <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
-      <TextInput
-          style={styles.textinputcontainer}
-          placeholder='password'
-          placeholderTextColor={colors.orange}
-          secureTextEntry
-          onChangeText={(text) => this.props.userstate({prop:'password',value:text})}
-          value={this.props.password}
+        <UserInput
+          onChangeText={email => this.setState({email})}
+          value={this.state.email}
+          placeholder={'email'}
+          textContentType={'emailAddress'}
         />
-        </ImageBackground>
-      </View>
-      <TouchableOpacity style={{paddingLeft: 60}}
-      onPress={()=>{
-        const {name,email,password} =this.props;
-        this.props.saveuser({name,email,password});
-        this.props.navigation.navigate('addstudentform');
-      }} >
-      <Image source={bleubutton} style={{width: 300, height: 60}}/>
-      <Text style={styles.buttoncontainer}>sign up</Text>
-      </TouchableOpacity>
-      </View>
+        <UserInput
+          onChangeText={password => this.setState({password})}
+          value={this.state.password}
+          placeholder={'password'}
+          textContentType={'password'}
+        />
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() =>
+            this.props.saveuser(
+              this.state.fullname,
+              this.state.email,
+              this.state.password,
+            )
+          }>
+          <Text style={styles.textButton}>Sign Up</Text>
+        </TouchableOpacity>
       </ImageBackground>
-     );
+    );
   }
 }
 
-  const mapStateToProps = state => {
-    const {name,email,password,error,loading,user} = state.user;
-    return(
-      {name,email,password}
-    );
+const mapStateToProps = state => {
+  const {name, email, password, error, loading, user} = state.user;
+  return {name, email, password};
+};
 
-  };
-
-  export default connect(
-    mapStateToProps,
-    actions,
-  )(SignWithEmail);
+export default connect(
+  mapStateToProps,
+  actions,
+)(SignWithEmail);

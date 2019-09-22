@@ -1,75 +1,69 @@
 import React, {Component} from 'react';
-import {View, Text,Image,ImageBackground,TouchableOpacity,TextInput,ActivityIndicator} from 'react-native';
+import {Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as actions from '../../redux/actions';
-import {imgbutton,collar,bg3,textinputbutton,bleubutton,crab} from '../../assets/images';
-import {GoBackButton} from '../../components';
-import colors from '../../assets/color';
+import {BG3} from '../../assets/_images';
+import {crab} from '../../assets/icons';
+
+import {GoBackButton, UserInput} from '../../components';
 import styles from './sign-in-screen-styles';
 
-
 class SignInUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
+
   render() {
-    return(
-      <ImageBackground source={bg3} style={{width: '100%', height: '100%'}}>
-      <GoBackButton  pressFunction={()=>{this.props.navigation.goBack()}}/>
-      <View style={styles.mainContainer}>
-      <View style={styles.secondaryContainer}>
-      <Image source={collar} />
-      <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
-      <TextInput
-          style={styles.textinputcontainer}
-          placeholder='email'
-          placeholderTextColor={colors.orange}
-          value={this.props.email}
-          onChangeText={(text) => this.props.userstate({prop:'email',value:text})}
+    return (
+      <ImageBackground source={BG3} style={styles.container}>
+        <GoBackButton
+          pressFunction={() => {
+            this.props.navigation.goBack();
+          }}
         />
-        </ImageBackground>
-      </View>
-      <View style={styles.secondaryContainer}>
-      <Image source={collar}/>
-      <ImageBackground source={textinputbutton} style={{width: 300, height: 60}} >
-      <TextInput
-          style={styles.textinputcontainer}
-          placeholder='password'
-          placeholderTextColor={colors.orange}
-          secureTextEntry
-          onChangeText={(text) => this.props.userstate({prop:'password',value:text})}
-          value={this.props.password}
+        <UserInput
+          onChangeText={email => this.setState({email: email})}
+          value={this.state.email}
+          placeholder={'Email'}
+          textContentType={'emailAddress'}
         />
-        </ImageBackground>
-      </View>
-      <TouchableOpacity style={{paddingLeft: 60}}
-      onPress={()=>{
-        const {name,email,password} =this.props;
-        this.props.loginuser({email,password});
-        this.props.navigation.navigate('addstudentform');
-      }} >
-      <Image source={bleubutton} style={{width: 300, height: 60}}/>
-      <Text style={styles.buttoncontainer}>sign up</Text>
-      </TouchableOpacity>
-      </View>
-      <View style={styles.forgetpasswordContainer}>
-      <Image source={crab} style={{width:20,height: 20}}/>
-      <TouchableOpacity>
-      <Text style={styles.forgetpasswordtext}> forget your password</Text>
-      </TouchableOpacity>
-      </View>
+        <UserInput
+          onChangeText={password => this.setState({password: password})}
+          value={this.state.password}
+          placeholder={'Password'}
+          textContentType={'password'}
+        />
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() =>
+            this.props.loginuser(this.state.email, this.state.password)
+          }>
+          <Text style={styles.textButton}>Sign In</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.forgetContainer}>
+          <Image
+            style={styles.forgetIcon}
+            source={crab}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.textForget}>{'Forget your password?'}</Text>
+        </TouchableOpacity>
       </ImageBackground>
-     );
+    );
   }
 }
 
-  const mapStateToProps = state => {
-    const {name,email,password,error,loading,user} = state.user;
-    return(
-      {name,email,password}
-    );
+const mapStateToProps = state => {
+  const {name, email, password, error, loading, user} = state.user;
+  return {name, email, password};
+};
 
-  };
-
-  export default connect(
-    mapStateToProps,
-    actions,
-  )(SignInUser);
+export default connect(
+  mapStateToProps,
+  actions,
+)(SignInUser);
