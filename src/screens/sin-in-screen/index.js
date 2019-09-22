@@ -19,7 +19,10 @@ class SignInUser extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={BG3} style={styles.container}>
+      <ImageBackground
+        resizeMode={'stretch'}
+        source={BG3}
+        style={styles.container}>
         <GoBackButton
           pressFunction={() => {
             this.props.navigation.goBack();
