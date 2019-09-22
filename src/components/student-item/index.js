@@ -17,6 +17,16 @@ const StudentItem = props => {
         size={100}
         containerStyle={{borderColor: 'white', borderWidth: 3}}
       />
+      <Text style={styles.name}>
+        {'User '}
+        <Text style={styles.number}>
+          {'1'}
+          <Text style={styles.name}>
+            {' : '}
+            {'Ahmed'}
+          </Text>
+        </Text>
+      </Text>
     </View>
   );
 };

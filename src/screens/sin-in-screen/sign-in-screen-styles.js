@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   submitButton: {
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
     elevation: 11,
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   textButton: {

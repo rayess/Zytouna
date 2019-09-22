@@ -2,27 +2,31 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  Image,
+  FlatList,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
-import {textinputbutton, bg4} from '../../assets/images';
+import {BG5} from '../../assets/_images';
 import {StudentItem} from '../../components';
-
 import styles from './add-student-screen-styles';
+const dataSource = [1, 2, 3];
 class AddStudent extends React.Component {
   render() {
     return (
-      <ImageBackground source={bg4} style={{width: '100%', height: '100%'}}>
-        <View style={styles.mainContainer}>
-          <TouchableOpacity>
-            <Image source={textinputbutton} style={{width: 300, height: 60}} />
-            <Text style={styles.textButton}>Add Student</Text>
-          </TouchableOpacity>
-
-          <StudentItem></StudentItem>
+      <ImageBackground
+        resizeMode={'stretch'}
+        source={BG5}
+        style={styles.container}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.textButton}>Add Student</Text>
+        </TouchableOpacity>
+        <View style={styles.studentsContainer}>
+          {dataSource.map((item, index) => (
+            <StudentItem />
+          ))}
         </View>
       </ImageBackground>
     );
