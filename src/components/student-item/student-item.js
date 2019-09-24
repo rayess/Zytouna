@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import colors from '../../assets/color';
 export default StyleSheet.create({
   container: {
     margin: 10,
@@ -7,13 +6,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   name: {
+    marginTop: 8,
     color: 'white',
     fontSize: 22,
     fontFamily: 'DuepuntozeroRegular',
-  },
-  number: {
-    color: 'white',
-    fontSize: 22,
-    fontFamily: 'Baloo-Regular',
   },
 });

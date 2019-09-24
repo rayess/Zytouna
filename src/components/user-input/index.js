@@ -12,10 +12,10 @@ const UserInput = props => {
         resizeMode={'contain'}
       />
       <TextInput
-        style={styles.input}
+        {...props}
+        style={[styles.input, props.style]}
         placeholderTextColor={'gray'}
         autoCorrect={false}
-        {...props}
       />
     </View>
   );

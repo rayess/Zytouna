@@ -14,19 +14,10 @@ const StudentItem = props => {
         rounded
         onPress={() => console.log('Works!')}
         source={tt_avatar_small}
-        size={100}
+        size={115}
         containerStyle={{borderColor: 'white', borderWidth: 3}}
       />
-      <Text style={styles.name}>
-        {'User '}
-        <Text style={styles.number}>
-          {'1'}
-          <Text style={styles.name}>
-            {' : '}
-            {'Ahmed'}
-          </Text>
-        </Text>
-      </Text>
+      <Text style={styles.name}>{'Ahmed'}</Text>
     </View>
   );
 };

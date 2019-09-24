@@ -25,7 +25,7 @@ class AddStudent extends React.Component {
         </TouchableOpacity>
         <View style={styles.studentsContainer}>
           {dataSource.map((item, index) => (
-            <StudentItem />
+            <StudentItem key={index.toString()} />
           ))}
         </View>
       </ImageBackground>

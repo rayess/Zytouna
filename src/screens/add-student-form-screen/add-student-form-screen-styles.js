@@ -1,53 +1,89 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../assets/color';
 export default StyleSheet.create({
-  maincontainer:{
-    flex:1,
-    flexDirection: 'row',
-    padding: 20
-  },
-  formcontainer:{
-    flex:3,
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  buttoncontainer:{
-    flex:1,
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-  },
-
-  textplaceholder:{
-    fontFamily: 'Duepuntozero-ExtraLight',
-    fontSize: 15,
-    color: colors.white,
-    fontWeight: 'bold',
-    paddingLeft: 20
-  },
-  textinputcontainer:{
-    position:'absolute',
-    alignSelf: 'center',
-    top:20,
-    fontSize: 20,
-    fontFamily: 'Duepuntozero-Bold',
-    color: colors.orange
-
-  },
-  pickerstyle:{
-    position: 'absolute',
-    width: 300,
+  container: {
+    width: '100%',
     height: '100%',
+    flexDirection: 'row',
+  },
+  formcontainer: {
+    flex: 3,
+    flexDirection: 'column',
+    paddingTop: 30,
+  },
 
+  takephotostyle: {
+    flex: 1.5,
+    alignItems: 'flex-end',
   },
-  pickeritemstyle:{
-    fontSize: 20,
+  label: {
     fontFamily: 'Duepuntozero-Bold',
-    height: 60,
+    fontSize: 20,
+    color: colors.white,
+    paddingLeft: 100,
+    marginBottom: 8,
+  },
+  pickerContainer: {
+    marginBottom: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pickerIcon: {
+    height: 56,
+    width: 56,
+  },
+  pickerArrowIcon: {
+    height: 16,
+    width: 16,
+  },
+  picker: {
+    height: 56,
+    width: '75%',
+    backgroundColor: 'white',
+    marginLeft: 12,
+    borderRadius: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+    elevation: 11,
+  },
+  pickerText: {
     color: colors.orange,
+    fontSize: 18,
+    fontFamily: 'Duepuntozero-ExtraBold',
+    textAlign: 'left',
   },
-  takephotostyle:{
-    flex:1,
-    alignItems: 'flex-start',
+  pickerItemButton: {
+    width: 200,
+    backgroundColor: 'white',
+    borderRadius: 6,
+    margin: 2,
   },
-})
+  pickerItemText: {
+    color: colors.orange,
+    fontSize: 24,
+    fontFamily: 'Duepuntozero-ExtraBold',
+    textAlign: 'center',
+    paddingVertical: 15,
+  },
+  buttoncontainer: {
+    flex: 1.3,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: 20,
+  },
+  submitIcon: {
+    height: 70,
+    width: 70,
+  },
+});

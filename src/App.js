@@ -19,14 +19,15 @@ import firebase from 'firebase';
 
 const AppNavigator = createStackNavigator(
   {
+    addstudentform: AddStudentForm,
     addStudent: AddStudent,
     signemail: SignWithEmail,
     Signfbgle: SignInFbAndGoogle,
     signinuser: SignInUser,
     Home: SignUpScreen,
     SplashScreen: SplashScreen,
-    addstudentform: AddStudentForm,
   },
+
   {
     defaultNavigationOptions: {
       header: null,
