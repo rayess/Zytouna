@@ -7,6 +7,7 @@ import AddStudentForm from './add-student-form-screen';
 import ChooseLevel from './choose-level-screen';
 import ChooseLevelAndChapterSwiper from './choose-level-and-chapter-swiper';
 import SignInUser from './sin-in-screen';
+import ChooseAvatar from './choose-avatar-screen';
 
 export {
   SplashScreen,
@@ -18,4 +19,5 @@ export {
   SignWithEmail,
   SignInFbAndGoogle,
   SignUpScreen,
+  ChooseAvatar,
 };

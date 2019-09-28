@@ -9,6 +9,7 @@ export default StyleSheet.create({
     marginTop: 8,
     color: 'white',
     fontSize: 22,
-    fontFamily: 'DuepuntozeroRegular',
+    fontFamily: 'Duepuntozero',
+    fontWeight: 'bold'
   },
 });

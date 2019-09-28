@@ -14,13 +14,17 @@ import {StudentItem} from '../../components';
 import styles from './add-student-screen-styles';
 const dataSource = [1, 2, 3];
 class AddStudent extends React.Component {
+  constructor(props) {
+    super(props);
+    const userid=JSON.stringify(this.props.navigation.getParam('userid', null));
+  }
   render() {
     return (
       <ImageBackground
         resizeMode={'stretch'}
         source={BG5}
         style={styles.container}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('addstudentform')}>
           <Text style={styles.textButton}>Add Student</Text>
         </TouchableOpacity>
         <View style={styles.studentsContainer}>

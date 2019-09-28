@@ -11,7 +11,8 @@ export const loginuser = ({email,password})=>{
       )
       firebase.auth().onAuthStateChanged(user => {
             if (user) {
-          loginUserSuccess(dispatch,user)
+          userId = firebase.auth().currentUser.uid;
+          loginUserSuccess(dispatch,userId);
             } else {
                 // No user is signed in.
             }

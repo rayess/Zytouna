@@ -24,7 +24,7 @@ class SignInUser extends React.Component {
         source={BG3}
         style={styles.container}>
         <GoBackButton
-          pressFunction={() => {
+          onPress={() => {
             this.props.navigation.goBack();
           }}
         />
@@ -42,8 +42,13 @@ class SignInUser extends React.Component {
         />
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() =>
-            this.props.loginuser(this.state.email, this.state.password)
+          onPress={() =>{
+            const {email,password} =this.state;
+            this.props.loginuser({email,password});
+              this.props.navigation.navigate('addStudent', {
+              userid: this.props.userid,
+            });
+          }
           }>
           <Text style={styles.textButton}>Sign In</Text>
         </TouchableOpacity>
@@ -62,8 +67,8 @@ class SignInUser extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const {name, email, password, error, loading, user} = state.user;
-  return {name, email, password};
+  const {error, loading, userid} = state.user;
+  return {error, loading, userid};
 };
 
 export default connect(

@@ -23,7 +23,7 @@ class SignWithEmail extends React.Component {
         source={BG3}
         style={styles.container}>
         <GoBackButton
-          pressFunction={() => {
+          onPress={() => {
             this.props.navigation.goBack();
           }}
         />
@@ -47,13 +47,15 @@ class SignWithEmail extends React.Component {
         />
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() =>
-            this.props.saveuser(
-              this.state.fullname,
-              this.state.email,
-              this.state.password,
-            )
-          }>
+          onPress={() =>{
+            const {fullname,email,password}=this.state;
+            this.props.saveuser({
+              fullname,email,password
+            });
+              this.props.navigation.navigate('addStudent', {
+              userid: this.props.userid,
+            });
+          }}>
           <Text style={styles.textButton}>Sign Up</Text>
         </TouchableOpacity>
       </ImageBackground>
@@ -62,8 +64,8 @@ class SignWithEmail extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const {name, email, password, error, loading, user} = state.user;
-  return {name, email, password};
+  const {error, loading, userid} = state.user;
+  return {error, loading, userid};
 };
 
 export default connect(

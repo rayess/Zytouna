@@ -12,12 +12,12 @@ const StudentItem = props => {
     <View style={styles.container}>
       <Avatar
         rounded
-        onPress={() => console.log('Works!')}
-        source={tt_avatar_small}
+        onPress={props.onPress}
+        source={props.source}
         size={115}
         containerStyle={{borderColor: 'white', borderWidth: 3}}
       />
-      <Text style={styles.name}>{'Ahmed'}</Text>
+      <Text style={styles.name}>{props.label}</Text>
     </View>
   );
 };

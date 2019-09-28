@@ -6,7 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-
+import { createAppContainer } from 'react-navigation';
 import {BG3} from '../../assets/_images';
 import ImagePicker from 'react-native-image-picker';
 import {Avatar} from 'react-native-elements';
@@ -23,27 +23,10 @@ class AddStudentForm extends React.Component {
       fullname: '',
       age: '',
       gender: 'Boy',
-      pickedImage: addphoto,
       pickerModal: false,
+
     };
   }
-
-  pickImageHandler = () => {
-    ImagePicker.showImagePicker(
-      {title: 'Pick an Image', maxWidth: 800, maxHeight: 600},
-      res => {
-        if (res.didCancel) {
-          console.log('User cancelled!');
-        } else if (res.error) {
-          console.log('Error', res.error);
-        } else {
-          this.setState({
-            pickedImage: {uri: res.uri},
-          });
-        }
-      },
-    );
-  };
 
   render() {
     return (
@@ -55,10 +38,9 @@ class AddStudentForm extends React.Component {
           <Avatar
             rounded
             size="large"
-            source={this.state.pickedImage}
-            onPress={this.pickImageHandler}
+            source={JSON.stringify(this.props.navigation.getParam('uri', addphoto))}
             containerStyle={{marginRight: 15, marginTop: 50}}
-          />
+          onPress={()=> {this.props.navigation.navigate('chooseavatar');}} />
         </View>
         <View style={styles.formcontainer}>
           <Text style={styles.label}>{'Full Name'}</Text>

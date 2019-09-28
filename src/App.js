@@ -11,6 +11,7 @@ import {
   AddStudentForm,
   SignInUser,
   AddStudent,
+  ChooseAvatar,
 } from './screens';
 import {store, persistor} from './redux/store';
 import {createAppContainer} from 'react-navigation';
@@ -19,6 +20,7 @@ import firebase from 'firebase';
 
 const AppNavigator = createStackNavigator(
   {
+    chooseavatar:ChooseAvatar,
     addstudentform: AddStudentForm,
     addStudent: AddStudent,
     signemail: SignWithEmail,
@@ -26,6 +28,11 @@ const AppNavigator = createStackNavigator(
     signinuser: SignInUser,
     Home: SignUpScreen,
     SplashScreen: SplashScreen,
+  },
+
+  {
+    initialRouteName: 'SplashScreen',
+    headerMode:'none'
   },
 
   {
