@@ -6,7 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import { createAppContainer } from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import {BG3} from '../../assets/_images';
 import ImagePicker from 'react-native-image-picker';
 import {Avatar} from 'react-native-elements';
@@ -15,6 +15,7 @@ import Overlay from 'react-native-modal-overlay';
 import {UserInput} from '../../components';
 import {nautical, finish, arrow_picker, addphoto} from '../../assets/icons';
 import styles from './add-student-form-screen-styles';
+import firebase from 'firebase';
 
 class AddStudentForm extends React.Component {
   constructor(props) {
@@ -24,11 +25,38 @@ class AddStudentForm extends React.Component {
       age: '',
       gender: 'Boy',
       pickerModal: false,
-
     };
   }
-
+  onPress = async () => {
+    const image = params ? params.uri : addphoto;
+    const {params} = this.props.navigation.state;
+    const {app} = firebase.storage();
+    console.log('test ', JSON.stringify(app));
+  };
+  uploadImage = () => {
+    const {params} = this.props.navigation.state;
+    const filename = `anwer_image`; // Generate unique name
+    this.setState({uploading: true});
+    firebase
+      .storage()
+      .ref(`zaytouna/images/${filename}`)
+      .putFile(params.uri.uri)
+      .on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        snapshot => {
+          if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+            console.log('snapshot ', snapshot);
+          }
+        },
+        error => {
+          console.log('error ', error);
+        },
+      );
+  };
   render() {
+    const {params} = this.props.navigation.state;
+    const uri = params ? params.uri : addphoto;
+
     return (
       <ImageBackground
         resizeMode={'stretch'}
@@ -38,9 +66,12 @@ class AddStudentForm extends React.Component {
           <Avatar
             rounded
             size="large"
-            source={JSON.stringify(this.props.navigation.getParam('uri', addphoto))}
+            source={uri}
             containerStyle={{marginRight: 15, marginTop: 50}}
-          onPress={()=> {this.props.navigation.navigate('chooseavatar');}} />
+            onPress={() => {
+              this.props.navigation.navigate('chooseavatar');
+            }}
+          />
         </View>
         <View style={styles.formcontainer}>
           <Text style={styles.label}>{'Full Name'}</Text>
@@ -79,12 +110,13 @@ class AddStudentForm extends React.Component {
           </View>
         </View>
         <View style={styles.buttoncontainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.uploadImage}>
             <Image source={finish} style={styles.submitIcon} />
           </TouchableOpacity>
         </View>
 
         <Overlay
+          supportedOrientations={['landscape']}
           visible={this.state.pickerModal}
           closeOnTouchOutside={true}
           animationType="zoomIn"

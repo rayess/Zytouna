@@ -23,15 +23,34 @@ import avatar9pressed from './files/AVATAR9Copy.png';
 import avatar10 from './files/AVATAR10.png';
 import avatar10pressed from './files/AVATAR10Copy.png';
 import backfleche from './files/flesheBACK.png';
-export {logo, crab, nautical,addphoto,
-avatar1,avatar1pressed,
-avatar2,avatar2pressed,
-avatar3,avatar3pressed,
-avatar4,avatar4pressed,
-avatar5,avatar5pressed,
-avatar6,avatar6pressed,
-avatar7,avatar7pressed,
-avatar8,avatar8pressed,
-avatar9,avatar9pressed,
-avatar10,avatar10pressed,
-backfleche};
+import finish from './files/finish.png';
+import arrow_picker from './files/arrow_picker.png';
+export {
+  logo,
+  crab,
+  finish,
+  arrow_picker,
+  nautical,
+  addphoto,
+  avatar1,
+  avatar1pressed,
+  avatar2,
+  avatar2pressed,
+  avatar3,
+  avatar3pressed,
+  avatar4,
+  avatar4pressed,
+  avatar5,
+  avatar5pressed,
+  avatar6,
+  avatar6pressed,
+  avatar7,
+  avatar7pressed,
+  avatar8,
+  avatar8pressed,
+  avatar9,
+  avatar9pressed,
+  avatar10,
+  avatar10pressed,
+  backfleche,
+};

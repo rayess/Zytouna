@@ -1,5 +1,10 @@
 import React from 'react';
-import {Text, ImageBackground, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
 import {BG3} from '../../assets/_images';
@@ -17,6 +22,7 @@ class SignWithEmail extends React.Component {
   }
 
   render() {
+    const {fullname, email, password} = this.state;
     return (
       <ImageBackground
         resizeMode={'stretch'}
@@ -47,24 +53,24 @@ class SignWithEmail extends React.Component {
         />
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() =>{
-            const {fullname,email,password}=this.state;
-            this.props.saveuser({
-              fullname,email,password
-            });
-              this.props.navigation.navigate('addStudent', {
-              userid: this.props.userid,
-            });
-          }}>
-          <Text style={styles.textButton}>Sign Up</Text>
+          onPress={() =>
+            this.props.saveuser(fullname, email, password, () =>
+              this.props.navigation.navigate('addStudent'),
+            )
+          }>
+          {this.props.loading ? (
+            <ActivityIndicator size="large" color="#fff" />
+          ) : (
+            <Text style={styles.textButton}>Sign Up</Text>
+          )}
         </TouchableOpacity>
       </ImageBackground>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const {error, loading, userid} = state.user;
+const mapStateToProps = ({user}) => {
+  const {error, loading, userid} = user;
   return {error, loading, userid};
 };
 
