@@ -25,6 +25,7 @@ import avatar10pressed from './files/AVATAR10Copy.png';
 import backfleche from './files/flesheBACK.png';
 import finish from './files/finish.png';
 import arrow_picker from './files/arrow_picker.png';
+import default_avatar from './files/default_avatar.png';
 export {
   logo,
   crab,
@@ -52,5 +53,5 @@ export {
   avatar9pressed,
   avatar10,
   avatar10pressed,
-  backfleche,
+  backfleche,default_avatar
 };

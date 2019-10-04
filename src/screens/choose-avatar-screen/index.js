@@ -100,9 +100,8 @@ class ChooseAvatar extends React.Component {
             pickedImage: {uri: res.uri},
           });
           this.props.navigation.navigate('addstudentform', {
-            uri: {uri: res.uri},
+            uri: {uri: res.uri},filepath:res.uri,
           });
-          console.log({uri: res.uri});
         }
       },
     );
@@ -117,7 +116,6 @@ class ChooseAvatar extends React.Component {
         <View style={styles.takephotoContainer}>
           <StudentItem
             source={this.state.pickedImage}
-            label={'Ahmed'}
             onPress={this.pickImageHandler.bind(this)}
           />
         </View>
@@ -133,7 +131,7 @@ class ChooseAvatar extends React.Component {
                   this.setState({avatarline1: newArray});
                   this.setState({pickedImage: avatar.pressed});
                   this.props.navigation.navigate('addstudentform', {
-                    uri: avatar.pressed,
+                    uri: avatar.pressed, filepath:'',
                   });
                 }}
               />
@@ -150,7 +148,7 @@ class ChooseAvatar extends React.Component {
                   this.setState({avatarline2: pressedArray});
                   this.setState({pickedImage: avatar.pressed});
                   this.props.navigation.navigate('addstudentform', {
-                    uri: avatar.pressed,
+                    uri: avatar.pressed,filepath:'',
                   });
                 }}
               />

@@ -2,7 +2,7 @@ import {USERSAVE, LOGIN_USER_SUCCES, LOGIN_USER_FAIL} from '../actions-types';
 import 'firebase/firestore';
 import firebase from 'firebase';
 import Toast from 'react-native-root-toast';
-
+import colors from '../../assets/color';
 export const saveuser = (fullname, email, password, callBack) => {
   return dispatch => {
     console.log(fullname);
@@ -38,6 +38,9 @@ export const saveuser = (fullname, email, password, callBack) => {
           animation: true,
           hideOnPress: true,
           delay: 0,
+          backgroundColor: colors.blueSky,
+          textColor:colors.white,
+
         });
       });
   };

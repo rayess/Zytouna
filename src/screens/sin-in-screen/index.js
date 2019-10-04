@@ -35,6 +35,7 @@ class SignInUser extends React.Component {
           textContentType={'emailAddress'}
         />
         <UserInput
+         secureTextEntry
           onChangeText={password => this.setState({password: password})}
           value={this.state.password}
           placeholder={'Password'}
@@ -44,10 +45,9 @@ class SignInUser extends React.Component {
           style={styles.submitButton}
           onPress={() =>{
             const {email,password} =this.state;
-            this.props.loginuser({email,password});
-              this.props.navigation.navigate('addStudent', {
-              userid: this.props.userid,
-            });
+            this.props.loginuser(email,password, () =>
+              this.props.navigation.navigate('addStudent'),
+            );
           }
           }>
           <Text style={styles.textButton}>Sign In</Text>
@@ -66,8 +66,8 @@ class SignInUser extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const {error, loading, userid} = state.user;
+const mapStateToProps = ({user}) => {
+  const {error, loading, userid} = user;
   return {error, loading, userid};
 };
 

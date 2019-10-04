@@ -21,7 +21,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     color: colors.orange,
     fontSize: 18,
-    fontFamily: 'Duepuntozero-ExtraBold',
+    fontWeight: 'bold',
     textAlign: 'center',
     paddingHorizontal: 15,
     shadowColor: '#000',

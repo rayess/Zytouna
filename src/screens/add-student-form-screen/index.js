@@ -7,15 +7,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {createAppContainer} from 'react-navigation';
+import {connect} from 'react-redux';
+import * as actions from '../../redux/actions';
+import firebase from 'firebase';
 import {BG3} from '../../assets/_images';
 import ImagePicker from 'react-native-image-picker';
 import {Avatar} from 'react-native-elements';
 import Overlay from 'react-native-modal-overlay';
-
+import Toast from 'react-native-root-toast';
+import colors from '../../assets/color';
 import {UserInput} from '../../components';
 import {nautical, finish, arrow_picker, addphoto} from '../../assets/icons';
 import styles from './add-student-form-screen-styles';
-import firebase from 'firebase';
 
 class AddStudentForm extends React.Component {
   constructor(props) {
@@ -27,36 +30,13 @@ class AddStudentForm extends React.Component {
       pickerModal: false,
     };
   }
-  onPress = async () => {
-    const image = params ? params.uri : addphoto;
-    const {params} = this.props.navigation.state;
-    const {app} = firebase.storage();
-    console.log('test ', JSON.stringify(app));
-  };
-  uploadImage = () => {
-    const {params} = this.props.navigation.state;
-    const filename = `anwer_image`; // Generate unique name
-    this.setState({uploading: true});
-    firebase
-      .storage()
-      .ref(`zaytouna/images/${filename}`)
-      .putFile(params.uri.uri)
-      .on(
-        firebase.storage.TaskEvent.STATE_CHANGED,
-        snapshot => {
-          if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
-            console.log('snapshot ', snapshot);
-          }
-        },
-        error => {
-          console.log('error ', error);
-        },
-      );
-  };
+
+
   render() {
     const {params} = this.props.navigation.state;
     const uri = params ? params.uri : addphoto;
-
+    console.log(uri);
+    const filepath=params? params.filepath :'';
     return (
       <ImageBackground
         resizeMode={'stretch'}
@@ -110,7 +90,24 @@ class AddStudentForm extends React.Component {
           </View>
         </View>
         <View style={styles.buttoncontainer}>
-          <TouchableOpacity onPress={this.uploadImage}>
+          <TouchableOpacity onPress={()=>{
+            const {fullname,age,gender}=this.state;
+            if(fullname=='' || age==''){
+              Toast.show('You should enter data', {
+                duration: Toast.durations.LONG,
+                position: Toast.positions.BOTTOM,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+                backgroundColor: colors.blueSky,
+                textColor:colors.white,
+
+              });
+            }
+            const userid=this.props.userid;
+            //this.props.saveStudent(fullname,age,gender,filepath,userid);
+          }}>
             <Image source={finish} style={styles.submitIcon} />
           </TouchableOpacity>
         </View>
@@ -159,4 +156,11 @@ class AddStudentForm extends React.Component {
     );
   }
 }
-export default AddStudentForm;
+const mapStateToProps = ({user}) => {
+  const {userid,loading,error} = user;
+  return {userid,loading,error};
+};
+export default connect(
+  mapStateToProps,
+  actions,
+)( AddStudentForm);

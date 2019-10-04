@@ -46,6 +46,7 @@ class SignWithEmail extends React.Component {
           textContentType={'emailAddress'}
         />
         <UserInput
+          secureTextEntry
           onChangeText={password => this.setState({password})}
           value={this.state.password}
           placeholder={'password'}

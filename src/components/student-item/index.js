@@ -3,7 +3,6 @@ import {View, TouchableOpacity, Text, Image} from 'react-native';
 import {Avatar} from 'react-native-elements';
 
 import {default_avatar} from '../../assets/icons';
-import {tt_avatar_small} from '../../assets/_images';
 
 import styles from './student-item';
 

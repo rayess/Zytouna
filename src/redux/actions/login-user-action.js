@@ -1,22 +1,37 @@
 import {USERLOGIN, LOGIN_USER_SUCCES, LOGIN_USER_FAIL} from '../actions-types';
 import {loginUserSuccess, loginUserFail} from './save-user-action';
 import firebase from 'firebase';
-export const loginuser = ({email, password}) => {
+import Toast from 'react-native-root-toast';
+import colors from '../../assets/color';
+export const loginuser = (email, password,callBack) => {
   return dispatch => {
     dispatch({type: USERLOGIN});
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password).then(function(result) {
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            userId = firebase.auth().currentUser.uid;
+            loginUserSuccess(dispatch, userId);
+            callBack();
+          } else {
+            // No user is signed in.
+          }
+        });
+      })
       .catch(function(error) {
         loginUserFail(dispatch, error);
+        Toast.show(error.message, {
+          duration: Toast.durations.LONG,
+          position: Toast.positions.BOTTOM,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+          delay: 0,
+          backgroundColor: colors.blueSky,
+          textColor:colors.white,
+
+        });
       });
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        userId = firebase.auth().currentUser.uid;
-        loginUserSuccess(dispatch, userId);
-      } else {
-        // No user is signed in.
-      }
-    });
   };
 };
