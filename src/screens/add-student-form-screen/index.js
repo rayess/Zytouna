@@ -19,6 +19,7 @@ import styles from './add-student-form-screen-styles';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
+import {avatars} from '../../const';
 
 class AddStudentForm extends React.Component {
   constructor(props) {
@@ -33,9 +34,18 @@ class AddStudentForm extends React.Component {
   _submit = () => {
     const {fullname, age, gender} = this.state;
     const {params} = this.props.navigation.state;
-    const filepath = params ? params.filepath : '';
-
-    if (fullname == '' || age == '') {
+    if (!params) {
+      Toast.show('You should enter picture', {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.BOTTOM,
+        shadow: true,
+        animation: true,
+        hideOnPress: true,
+        delay: 0,
+        backgroundColor: colors.blueSky,
+        textColor: colors.white,
+      });
+    } else if (fullname == '' || age == '') {
       Toast.show('You should enter data', {
         duration: Toast.durations.LONG,
         position: Toast.positions.BOTTOM,
@@ -46,14 +56,21 @@ class AddStudentForm extends React.Component {
         backgroundColor: colors.blueSky,
         textColor: colors.white,
       });
+    } else {
+      const filepath = params.uri ? params.filepath : params.name;
+      const isAssets = params.uri ? false : true;
+      const userid = this.props.userid;
+      this.props.saveStudent(fullname, age, gender, filepath, userid, isAssets);
     }
-    const userid = this.props.userid;
-    this.props.saveStudent(fullname, age, gender, filepath, userid);
   };
   render() {
     const {params} = this.props.navigation.state;
-    const uri = params ? params.uri : addphoto;
-    console.log(uri);
+    const avatar = params
+      ? params.uri
+        ? params.uri
+        : avatars[params.index].source
+      : addphoto;
+
     return (
       <ImageBackground
         resizeMode={'stretch'}
@@ -63,7 +80,7 @@ class AddStudentForm extends React.Component {
           <Avatar
             rounded
             size="large"
-            source={uri}
+            source={avatar}
             containerStyle={{marginRight: 15, marginTop: 50}}
             onPress={() => {
               this.props.navigation.navigate('chooseavatar');

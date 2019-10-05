@@ -9,7 +9,7 @@ const AvatarItem = props => {
       <Image
         key={props.key}
         source={props.source}
-        style={styles.avatarStyle}
+        style={props.style}
         resizeMode={'contain'}
       />
     </TouchableOpacity>

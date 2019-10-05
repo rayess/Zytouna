@@ -4,12 +4,16 @@ import {SAVESTUDENT} from '../actions-types/save-student';
 import {ADDSTUDENTSUCCESS} from '../actions-types/add-student-success';
 import {ADDSTUDENTFAIL} from '../actions-types/add-student-fail';
 
-export const saveStudent = (name, age, gender, filepath, iduser) => {
+export const saveStudent = (name, age, gender, filepath, iduser, isAssets) => {
   console.log(name);
   console.log(iduser);
   return dispatch => {
     dispatch({type: SAVESTUDENT});
-    uriToBlob(filepath, iduser, name, age, gender);
+    if (isAssets) {
+      addstudent(iduser, name, age, gender, filepath);
+    } else {
+      uriToBlob(filepath, iduser, name, age, gender);
+    }
   };
 };
 

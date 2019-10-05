@@ -16,7 +16,7 @@ const StudentItem = props => {
         size={115}
         containerStyle={{borderColor: 'white', borderWidth: 3}}
       />
-      <Text style={styles.name}>{props.label}</Text>
+      {props.islabel && <Text style={styles.name}>{props.label}</Text>}
     </View>
   );
 };

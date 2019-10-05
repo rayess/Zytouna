@@ -20,7 +20,7 @@ import firebase from 'firebase';
 
 const AppNavigator = createStackNavigator(
   {
-    chooseavatar:ChooseAvatar,
+    chooseavatar: ChooseAvatar,
     addstudentform: AddStudentForm,
     addStudent: AddStudent,
     signinuser: SignInUser,
@@ -32,7 +32,7 @@ const AppNavigator = createStackNavigator(
 
   {
     initialRouteName: 'SplashScreen',
-    headerMode:'none'
+    headerMode: 'none',
   },
 
   {
