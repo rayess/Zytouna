@@ -29,6 +29,7 @@
 		7C765190494D444DBC559E10 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D45800F122814653B264082B /* AntDesign.ttf */; };
 		8EE4281681244DACAEDC213B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB36CD5DF66F41B7B36CED6B /* EvilIcons.ttf */; };
 		9B9DCF1F731046E0AAAF9E9A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF07C9D223A64CAE8138D1D6 /* Zocial.ttf */; };
+		9F1511B02349DC13006FFDFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F1511AF2349DC13006FFDFE /* GoogleService-Info.plist */; };
 		9F5560A8232FC1F000ECBE14 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F5560A7232FC1EF00ECBE14 /* Baloo-Regular.ttf */; };
 		9F5560AA232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F5560A9232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf */; };
 		9F5560AC232FC23F00ECBE14 /* Duepuntozero-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F5560AB232FC23E00ECBE14 /* Duepuntozero-ExtraBold.ttf */; };
@@ -89,6 +90,7 @@
 		94AA035FC485D486352A4625 /* Pods-Zytouna-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zytouna-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Zytouna-tvOS/Pods-Zytouna-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		98CB00F2387A4320B6F7C9B5 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9D32073D8C224748B3519755 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		9F1511AF2349DC13006FFDFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F5560A7232FC1EF00ECBE14 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo-Regular.ttf"; path = "../assets/fonts/Baloo-Regular.ttf"; sourceTree = "<group>"; };
 		9F5560A9232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Duepuntozero-ExtraLight.ttf"; path = "../assets/fonts/Duepuntozero-ExtraLight.ttf"; sourceTree = "<group>"; };
 		9F5560AB232FC23E00ECBE14 /* Duepuntozero-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Duepuntozero-ExtraBold.ttf"; path = "../assets/fonts/Duepuntozero-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		13B07FAE1A68108700A75B9A /* Zytouna */ = {
 			isa = PBXGroup;
 			children = (
+				9F1511AF2349DC13006FFDFE /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -413,6 +416,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				9F1511B02349DC13006FFDFE /* GoogleService-Info.plist in Resources */,
 				7C765190494D444DBC559E10 /* AntDesign.ttf in Resources */,
 				37C1570280C0452D9E908001 /* Entypo.ttf in Resources */,
 				9F5560AA232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf in Resources */,
@@ -492,6 +496,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Zytouna/Pods-Zytouna-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -512,6 +517,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",

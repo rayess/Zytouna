@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {View, Text, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "893199681484",
+    "firebase_url": "https://zaytouna-6e487.firebaseio.com",
+    "project_id": "zaytouna-6e487",
+    "storage_bucket": "zaytouna-6e487.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893199681484:android:465defab297b4968fabf69",
+        "android_client_info": {
+          "package_name": "com.zytouna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893199681484-t8ffllcs8ltid13503o03hi4a1mtack3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zytouna",
+            "certificate_hash": "6ad4b614c22a2032022e4b7de45569fcf3208003"
+          }
+        },
+        {
+          "client_id": "893199681484-dvjtgh62oacf5ce60mjst3212fteb7ha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwoYQ5lTBirKe53tCql-t6seZW7UC0Jxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893199681484-dvjtgh62oacf5ce60mjst3212fteb7ha.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "893199681484-cdu5tkn5lqlhdkoli2nueen4lteak491.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Zytouna"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

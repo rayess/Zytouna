@@ -1,13 +1,22 @@
 import React from 'react';
-import {ImageBackground} from 'react-native';
+import {ImageBackground,ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
 import {BG2} from '../../assets/_images';
 import {GoBackButton} from '../../components';
-import {LoginButton, AccessToken} from 'react-native-fbsdk';
 import {ButtonWithIcon} from '../../components';
+import {GoogleSigninButton, GoogleSignin } from 'react-native-google-signin';
 import styles from './sign-in-fb-google-screen-styles';
 class SignInFbAndGoogle extends React.Component {
+  componentDidMount() {
+    //initial configuration
+    GoogleSignin.configure({
+      //It is mandatory to call this method before attempting to call signIn()
+      scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+      // Repleace with your webClientId generated from Firebase console
+      webClientId: '893199681484-dvjtgh62oacf5ce60mjst3212fteb7ha.apps.googleusercontent.com',
+    });
+  };
   render() {
     return (
       <ImageBackground
@@ -19,16 +28,21 @@ class SignInFbAndGoogle extends React.Component {
             this.props.navigation.goBack();
           }}
         />
-
-        <ButtonWithIcon
-          style={{width: '40%'}}
-          label={'SIGN IN WITH FACEBOOK'}
-          onPress={() => this.props.navigation.navigate('signemail')}
-        />
         <ButtonWithIcon
           style={{width: '40%'}}
           label={'SIGN IN WITH GOOGLE'}
-          onPress={() => this.props.navigation.navigate('signemail')}
+          onPress={() =>{
+            const callback=() =>
+            this.props.navigation.navigate('addStudent');
+            this.props.loginUserGoogle(callback)}}
+        />
+        <ButtonWithIcon
+          style={{width: '40%'}}
+          label={'SIGN IN WITH FACEBOOK'}
+          onPress={()=>{
+            const callback=() =>
+            this.props.navigation.navigate('addStudent');
+            this.props.loginUserFacebbok(callback);}}
         />
         <ButtonWithIcon
           style={{width: '40%'}}
@@ -40,11 +54,10 @@ class SignInFbAndGoogle extends React.Component {
   }
 }
 
-const mapStateToProps = ({toggle}) => {
-  const tog = toggle.toggle;
-  return {
-    tog,
-  };
+const mapStateToProps = ({user}) => {
+  const {userid,error,loading} = user;
+  return  {userid,error,loading};
+
 };
 
 export default connect(

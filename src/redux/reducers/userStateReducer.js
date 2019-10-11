@@ -4,6 +4,8 @@ import {
   LOGIN_USER_SUCCES,
   USERLOGIN,
 } from '../actions-types';
+import {GOOGLEUSERLOGIN} from '../actions-types/login-user-google';
+import {FACEBOOKUSERLOGIN} from '../actions-types/login-user-facebook';
 const initialState = {
   userid: null,
   error: '',
@@ -12,7 +14,7 @@ const initialState = {
 const userStateReducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
-    case USERSAVE: {
+    case (USERSAVE,USERLOGIN,GOOGLEUSERLOGIN,FACEBOOKUSERLOGIN): {
       return {
         ...state,
         loading: true,
@@ -28,16 +30,8 @@ const userStateReducer = (state = initialState, action) => {
     case LOGIN_USER_SUCCES: {
       return {
         ...state,
-        ...initialState,
         userid: action.payload,
         loading: false,
-      };
-    }
-    case USERLOGIN: {
-      return {
-        ...state,
-        ...initialState,
-        userid: action.payload,
       };
     }
     default: {

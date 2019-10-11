@@ -1,3 +1,5 @@
+
+
 import React, {Component} from 'react';
 import {
   View,
@@ -13,14 +15,29 @@ import {BG5} from '../../assets/_images';
 import {default_avatar} from '../../assets/icons';
 import {StudentItem} from '../../components';
 import styles from './add-student-screen-styles';
-const dataSource = [1, 2, 3];
+import 'firebase/firestore';
+import firebase from 'firebase';
+import {avatars} from '../../const';
 class AddStudent extends React.Component {
   constructor(props) {
     super(props);
-    const userid = JSON.stringify(
-      this.props.navigation.getParam('userid', null),
-    );
+    this.state = {
+    studentsdata: [],
+    }
   }
+  componentDidMount() {
+    const userid = this.props.userid;
+   this.getStudents(userid);
+  }
+   getStudents=async(userid)=>{
+     const students=[];
+    const snapshot = await firebase.firestore().collection('users').doc(userid).collection('students').get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        students.push(doc.data());
+    });
+});
+        this.setState({studentsdata:students})
+}
   render() {
     return (
       <ImageBackground
@@ -29,27 +46,28 @@ class AddStudent extends React.Component {
         style={styles.container}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.navigation.navigate('addstudentform')}>
+          onPress={() =>{this.props.navigation.navigate('addstudentform')}}>
           <Text style={styles.textButton}>Add Student</Text>
         </TouchableOpacity>
         <View style={styles.studentsContainer}>
-          {dataSource.map((item, index) => (
-            <StudentItem
-              isLabel={true}
-              key={index.toString()}
-              source={default_avatar}
-              label="Khalil"
-            />
-          ))}
-        </View>
-      </ImageBackground>
-    );
+            {this.state.studentsdata.map((item, index) => (
+              <StudentItem
+                key={index.toString()}
+               source={(item.downloadURL.toString().includes('https://firebasestorage'))?
+                {uri:item.downloadURL.toString()}:(avatars[avatars.findIndex(obj => obj.name === item.downloadURL)].source)}
+                label={item.name}
+              />
+            ))}
+          </View>
+
+        </ImageBackground>
+      );
+    }
   }
-}
-const mapStateToProps = ({toggle}) => {
-  const tog = toggle.toggle;
+const mapStateToProps = ({user}) => {
+  const userid = user.userid;
   return {
-    tog,
+    userid
   };
 };
 

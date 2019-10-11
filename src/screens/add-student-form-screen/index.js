@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -60,7 +60,8 @@ class AddStudentForm extends React.Component {
       const filepath = params.uri ? params.filepath : params.name;
       const isAssets = params.uri ? false : true;
       const userid = this.props.userid;
-      this.props.saveStudent(fullname, age, gender, filepath, userid, isAssets);
+      this.props.saveStudent(fullname, age, gender, filepath, userid, isAssets,() =>
+        this.props.navigation.navigate('addStudent'));
     }
   };
   render() {

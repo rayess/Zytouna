@@ -12,6 +12,9 @@ import {
   SignInUser,
   AddStudent,
   ChooseAvatar,
+  ChooseLevel,
+  ChooseChapter,
+  ChooseLevelAndChapterSwiper
 } from './screens';
 import {store, persistor} from './redux/store';
 import {createAppContainer} from 'react-navigation';
@@ -20,6 +23,9 @@ import firebase from 'firebase';
 
 const AppNavigator = createStackNavigator(
   {
+    swiperscreen:ChooseLevelAndChapterSwiper,
+    choosechapter:ChooseChapter,
+    chooselevel:ChooseLevel,
     chooseavatar: ChooseAvatar,
     addstudentform: AddStudentForm,
     addStudent: AddStudent,
@@ -43,7 +49,6 @@ const AppNavigator = createStackNavigator(
 );
 
 const AppContainer = createAppContainer(AppNavigator);
-
 class App extends React.Component {
   componentDidMount() {
     firebase.initializeApp({

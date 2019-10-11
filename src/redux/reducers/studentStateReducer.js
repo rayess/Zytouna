@@ -4,6 +4,8 @@ import {ADDSTUDENTFAIL} from '../actions-types/add-student-fail';
 const initialState = {
   error: '',
   loading: false,
+  name:'',
+  downloadURL:'',
 };
 const studentStateReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,8 +24,11 @@ const studentStateReducer = (state = initialState, action) => {
     }
     case ADDSTUDENTSUCCESS: {
       return {
-        ...state,...initialState,
+        ...state,
         loading: false,
+        name:action.payload.name,
+        downloadURL:action.payload.downloadURL,
+
       };
     }
     default: {
