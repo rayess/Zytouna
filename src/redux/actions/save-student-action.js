@@ -4,18 +4,27 @@ import {SAVESTUDENT} from '../actions-types/save-student';
 import {ADDSTUDENTSUCCESS} from '../actions-types/add-student-success';
 import {ADDSTUDENTFAIL} from '../actions-types/add-student-fail';
 import {toastShow} from './show-error';
-export const saveStudent = (name, age, gender, filepath, iduser, isAssets,callback) => {
+
+export const saveStudent = (
+  name,
+  age,
+  gender,
+  filepath,
+  iduser,
+  isAssets,
+  callback,
+) => {
   return dispatch => {
     dispatch({type: SAVESTUDENT});
     if (isAssets) {
-      addstudent(iduser, name, age, gender, filepath,dispatch,callback);
+      addstudent(iduser, name, age, gender, filepath, dispatch, callback);
     } else {
-      uriToBlob(filepath, iduser, name, age, gender,dispatch,callback);
+      uriToBlob(filepath, iduser, name, age, gender, dispatch, callback);
     }
   };
 };
 
-addstudent = (iduser, name, age, gender, downloadURL,dispatch,callback) => {
+addstudent = (iduser, name, age, gender, downloadURL, dispatch, callback) => {
   var db = firebase.firestore();
   db.collection('users')
     .doc(iduser)
@@ -24,19 +33,20 @@ addstudent = (iduser, name, age, gender, downloadURL,dispatch,callback) => {
     .set({name: name, age: age, gender: gender, downloadURL: downloadURL})
     .then(() => {
       console.log('done');
-      return dispatch({type: ADDSTUDENTSUCCESS, payload: {name,downloadURL}});
+      return dispatch({type: ADDSTUDENTSUCCESS, payload: {name, downloadURL}});
       callback();
     });
 };
-uploadToFirebase = (blob, iduser, name, age, gender,dispatch,callback) => {
+uploadToFirebase = (blob, iduser, name, age, gender, dispatch, callback) => {
   return new Promise((resolve, reject) => {
     var storage = firebase.storage();
     var storageRef = storage.ref();
     var metadata = {
       contentType: 'image/jpeg',
     };
+    console.log(' blob ===>', blob);
     var uploadTask = storageRef
-      .child('studentsavatars/' + blob.name)
+      .child('studentsavatars/' + blob._data.name)
       .put(blob, metadata);
     uploadTask
       .on(
@@ -63,7 +73,15 @@ uploadToFirebase = (blob, iduser, name, age, gender,dispatch,callback) => {
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             console.log('File available at', downloadURL);
             console.log(iduser);
-            addstudent(iduser, name, age, gender, downloadURL,dispatch,callback);
+            addstudent(
+              iduser,
+              name,
+              age,
+              gender,
+              downloadURL,
+              dispatch,
+              callback,
+            );
           });
         },
       )
@@ -73,7 +91,7 @@ uploadToFirebase = (blob, iduser, name, age, gender,dispatch,callback) => {
       });
   });
 };
-uriToBlob = (uri, iduser, name, age, gender,dispatch,callback) => {
+uriToBlob = (uri, iduser, name, age, gender, dispatch, callback) => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 
@@ -81,7 +99,15 @@ uriToBlob = (uri, iduser, name, age, gender,dispatch,callback) => {
       // return the blob
       resolve(xhr.response);
       console.log(xhr.response);
-      uploadToFirebase(xhr.response, iduser, name, age, gender,dispatch,callback);
+      uploadToFirebase(
+        xhr.response,
+        iduser,
+        name,
+        age,
+        gender,
+        dispatch,
+        callback,
+      );
     };
     xhr.onerror = function() {
       // something went wrong

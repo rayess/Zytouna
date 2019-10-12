@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {View, Text, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
@@ -26,7 +26,7 @@ class SignUpScreen extends React.Component {
           />
           <ButtonWithIcon
             label={'NEW ACCOUNT'}
-            onPress={() => this.props.navigation.navigate('Signfbgle')}
+            onPress={() => this.props.navigation.navigate('signfbgle')}
           />
         </View>
       </ImageBackground>

@@ -8,16 +8,27 @@ import styles from './splash-screen-styles';
 
 import {StackActions, NavigationActions} from 'react-navigation';
 
+import firebase from 'firebase';
+
 const resetAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({routeName: 'Home'})],
 });
 
 class SplashScreen extends React.Component {
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.navigation.dispatch(resetAction);
-    }, 50);
+  async componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user === null) {
+        setTimeout(() => {
+          this.props.navigation.navigate('Login');
+        }, 1000);
+      } else {
+        this.props.navigation.navigate('Login');
+
+        console.warn('user splash', user);
+        console.log('user splash', user);
+      }
+    });
   }
   render() {
     return (

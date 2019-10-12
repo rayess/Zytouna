@@ -34,6 +34,7 @@ export {
   avatar8,
   avatar9,
   avatar10,
-  backfleche,default_avatar,
+  backfleche,
+  default_avatar,
   cloud,
 };

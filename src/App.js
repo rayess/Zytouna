@@ -14,30 +14,22 @@ import {
   ChooseAvatar,
   ChooseLevel,
   ChooseChapter,
-  ChooseLevelAndChapterSwiper
+  ChooseLevelAndChapterSwiper,
 } from './screens';
 import {store, persistor} from './redux/store';
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import firebase from 'firebase';
 
-const AppNavigator = createStackNavigator(
+const authNavigator = createStackNavigator(
   {
-    swiperscreen:ChooseLevelAndChapterSwiper,
-    choosechapter:ChooseChapter,
-    chooselevel:ChooseLevel,
-    chooseavatar: ChooseAvatar,
-    addstudentform: AddStudentForm,
-    addStudent: AddStudent,
     signinuser: SignInUser,
     signemail: SignWithEmail,
-    Signfbgle: SignInFbAndGoogle,
-    Home: SignUpScreen,
-    SplashScreen: SplashScreen,
+    signfbgle: SignInFbAndGoogle,
+    signupscreen: SignUpScreen,
   },
-
   {
-    initialRouteName: 'SplashScreen',
+    initialRouteName: 'signupscreen',
     headerMode: 'none',
   },
 
@@ -48,7 +40,46 @@ const AppNavigator = createStackNavigator(
   },
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const appNavigator = createStackNavigator(
+  {
+    swiperscreen: ChooseLevelAndChapterSwiper,
+    choosechapter: ChooseChapter,
+    chooselevel: ChooseLevel,
+    chooseavatar: ChooseAvatar,
+    addstudentform: AddStudentForm,
+    addStudent: AddStudent,
+  },
+
+  {
+    initialRouteName: 'swiperscreen',
+    headerMode: 'none',
+  },
+
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
+);
+
+const Navigator = createSwitchNavigator(
+  {
+    App: {
+      screen: appNavigator,
+    },
+    SplashScreen: {
+      screen: SplashScreen,
+    },
+    Login: {
+      screen: authNavigator,
+    },
+  },
+  {
+    initialRouteName: 'App',
+  },
+);
+
+const AppContainer = createAppContainer(Navigator);
 class App extends React.Component {
   componentDidMount() {
     firebase.initializeApp({

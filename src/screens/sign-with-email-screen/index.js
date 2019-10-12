@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   ImageBackground,
@@ -30,6 +30,7 @@ class SignWithEmail extends React.Component {
         style={styles.container}>
         <GoBackButton
           onPress={() => {
+            console.log('go back');
             this.props.navigation.goBack();
           }}
         />
