@@ -10,9 +10,16 @@ import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
 import {BG6} from '../../assets/_images';
 import styles from './choose-level-screen-styles';
+import colors from '../../assets/color';
 import {CloudItem} from '../../components';
 
 class ChooseLevel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      color:colors.gris,
+    }
+  }
   render() {
     return (
       <ImageBackground
@@ -20,7 +27,7 @@ class ChooseLevel extends React.Component {
         style={styles.container}
         resizeMode={'stretch'}>
         <View style={styles.hellotextcontainer}>
-          <Text style={styles.hellotextstyle}>{'Hi Ahmed !'}</Text>
+          <Text style={styles.hellotextstyle}>{'Hi '}{this.props.name}{' !'}</Text>
           <Text style={styles.subtitlestyle}> {'choose your level'}</Text>
         </View>
         <View style={styles.cloudcontainer}>
@@ -36,4 +43,12 @@ class ChooseLevel extends React.Component {
     );
   }
 }
-export default ChooseLevel;
+const mapStateToProps = ({activestudent}) => {
+  const name = activestudent.name;
+  return {name};
+};
+
+export default connect(
+  mapStateToProps,
+  actions,
+)(ChooseLevel);

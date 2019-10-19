@@ -18,15 +18,13 @@ const resetAction = StackActions.reset({
 class SplashScreen extends React.Component {
   async componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (user === null) {
+      if (user) {
+        this.props.updateUserId(user.uid);
         setTimeout(() => {
-          this.props.navigation.navigate('Login');
+          this.props.navigation.navigate('App');
         }, 1000);
       } else {
         this.props.navigation.navigate('Login');
-
-        console.warn('user splash', user);
-        console.log('user splash', user);
       }
     });
   }

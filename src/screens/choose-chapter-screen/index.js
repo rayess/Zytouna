@@ -15,7 +15,7 @@ class ChooseChapter extends React.Component {
         resizeMode={'stretch'}>
         <View style={styles.textcontainer}>
           <TouchableOpacity>
-            <Text style={styles.hellotextstyle}>{'Hi Ahmed !'}</Text>
+            <Text style={styles.hellotextstyle}>{'Hi '}{this.props.name}{' !'}</Text>
             <Text style={styles.subtitlestyle}> {'choose your chapter'}</Text>
           </TouchableOpacity>
         </View>
@@ -23,4 +23,11 @@ class ChooseChapter extends React.Component {
     );
   }
 }
-export default ChooseChapter;
+const mapStateToProps = ({activestudent}) => {
+  const name = activestudent.name;
+  return {name};
+};
+
+export default connect(
+  mapStateToProps,
+  actions,) (ChooseChapter);

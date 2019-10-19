@@ -4,4 +4,7 @@ import ButtonWithIcon from './button-with-icon';
 import StudentItem from './student-item';
 import AvatarItem from './avatar-item';
 import CloudItem from './cloud-item';
-export {GoBackButton, ButtonWithIcon, UserInput, StudentItem,AvatarItem,CloudItem};
+import LoadingOverlay from './loading-overlay';
+import LessonHeader from './lesson-header';
+import AudioItem from './audio-item';
+export {GoBackButton, ButtonWithIcon, UserInput, StudentItem,AvatarItem,CloudItem,LoadingOverlay,LessonHeader,AudioItem};

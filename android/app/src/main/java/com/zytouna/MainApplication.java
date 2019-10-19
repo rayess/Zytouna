@@ -10,7 +10,8 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
-
+import java.util.Arrays;
+import com.facebook.react.shell.MainReactPackage;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -26,7 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
       // Packages that cannot be autolinked yet can be added manually here, for example:
-      // packages.add(new MyReactNativePackage());
+      //packages.add(new myPackage());
       return packages;
     }
 
@@ -46,4 +47,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
   }
+
+
 }

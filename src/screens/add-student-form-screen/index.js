@@ -13,10 +13,9 @@ import {Avatar} from 'react-native-elements';
 import Overlay from 'react-native-modal-overlay';
 import Toast from 'react-native-root-toast';
 import colors from '../../assets/color';
-import {UserInput} from '../../components';
+import {UserInput,LoadingOverlay} from '../../components';
 import {nautical, finish, arrow_picker, addphoto} from '../../assets/icons';
 import styles from './add-student-form-screen-styles';
-
 import firebase from 'firebase';
 import 'firebase/firestore';
 import {avatars} from '../../const';
@@ -60,6 +59,7 @@ class AddStudentForm extends React.Component {
       const filepath = params.uri ? params.filepath : params.name;
       const isAssets = params.uri ? false : true;
       const userid = this.props.userid;
+      console.log(userid);
       this.props.saveStudent(fullname, age, gender, filepath, userid, isAssets,() =>
         this.props.navigation.navigate('addStudent'));
     }
@@ -77,6 +77,7 @@ class AddStudentForm extends React.Component {
         resizeMode={'stretch'}
         source={BG3}
         style={styles.container}>
+        <LoadingOverlay visible={this.props.loading} />
         <View style={styles.takephotostyle}>
           <Avatar
             rounded
@@ -99,6 +100,7 @@ class AddStudentForm extends React.Component {
           />
           <Text style={styles.label}>{'Age'}</Text>
           <UserInput
+            keyboardType='numeric'
             onChangeText={age => this.setState({age})}
             value={this.state.email}
             placeholder={'Age'}
@@ -174,9 +176,12 @@ class AddStudentForm extends React.Component {
     );
   }
 }
-const mapStateToProps = ({user}) => {
-  const {userid, loading, error} = user;
-  return {userid, loading, error};
+const mapStateToProps = ({student,user}) => {
+  const loading=student.loading;
+  const userid=user.userid;
+  return {
+    loading,userid
+  }
 };
 export default connect(
   mapStateToProps,

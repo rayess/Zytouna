@@ -34,4 +34,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 12,
   },
+  logoutoutcontainer:{
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    
+
+  },
+
 });

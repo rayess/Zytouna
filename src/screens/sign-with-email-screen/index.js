@@ -8,7 +8,7 @@ import {
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
 import {BG3} from '../../assets/_images';
-import {GoBackButton, UserInput} from '../../components';
+import {GoBackButton, UserInput,LoadingOverlay} from '../../components';
 import styles from './sign-with-email-styles-screen';
 
 class SignWithEmail extends React.Component {
@@ -34,6 +34,7 @@ class SignWithEmail extends React.Component {
             this.props.navigation.goBack();
           }}
         />
+        <LoadingOverlay visible={this.props.loading} />
         <UserInput
           onChangeText={fullname => this.setState({fullname})}
           value={this.state.fullname}
@@ -60,11 +61,7 @@ class SignWithEmail extends React.Component {
               this.props.navigation.navigate('addStudent'),
             )
           }>
-          {this.props.loading ? (
-            <ActivityIndicator size="large" color="#fff" />
-          ) : (
             <Text style={styles.textButton}>Sign Up</Text>
-          )}
         </TouchableOpacity>
       </ImageBackground>
     );

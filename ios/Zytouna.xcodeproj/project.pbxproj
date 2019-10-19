@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ZytounaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ZytounaTests.m */; };
 		112AEACEB8CF4F70912F3248 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1562EAE277D04F0F8C121216 /* MaterialCommunityIcons.ttf */; };
@@ -30,6 +29,7 @@
 		8EE4281681244DACAEDC213B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB36CD5DF66F41B7B36CED6B /* EvilIcons.ttf */; };
 		9B9DCF1F731046E0AAAF9E9A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF07C9D223A64CAE8138D1D6 /* Zocial.ttf */; };
 		9F1511B02349DC13006FFDFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F1511AF2349DC13006FFDFE /* GoogleService-Info.plist */; };
+		9F4B9E962358731000B82B5F /* libreact-native-video.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4B9E952358731000B82B5F /* libreact-native-video.a */; };
 		9F5560A8232FC1F000ECBE14 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F5560A7232FC1EF00ECBE14 /* Baloo-Regular.ttf */; };
 		9F5560AA232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F5560A9232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf */; };
 		9F5560AC232FC23F00ECBE14 /* Duepuntozero-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F5560AB232FC23E00ECBE14 /* Duepuntozero-ExtraBold.ttf */; };
@@ -91,6 +91,7 @@
 		98CB00F2387A4320B6F7C9B5 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9D32073D8C224748B3519755 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		9F1511AF2349DC13006FFDFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F4B9E952358731000B82B5F /* libreact-native-video.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-video.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F5560A7232FC1EF00ECBE14 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo-Regular.ttf"; path = "../assets/fonts/Baloo-Regular.ttf"; sourceTree = "<group>"; };
 		9F5560A9232FC21500ECBE14 /* Duepuntozero-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Duepuntozero-ExtraLight.ttf"; path = "../assets/fonts/Duepuntozero-ExtraLight.ttf"; sourceTree = "<group>"; };
 		9F5560AB232FC23E00ECBE14 /* Duepuntozero-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Duepuntozero-ExtraBold.ttf"; path = "../assets/fonts/Duepuntozero-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4B9E962358731000B82B5F /* libreact-native-video.a in Frameworks */,
 				B38B05D0505DA96DC0B1B377 /* libPods-Zytouna-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +188,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F4B9E952358731000B82B5F /* libreact-native-video.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				AB1E7B04C2B97C733E937F51 /* libPods-Zytouna.a */,

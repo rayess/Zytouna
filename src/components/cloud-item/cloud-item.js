@@ -15,8 +15,8 @@ export default StyleSheet.create({
     fontFamily: 'Baloo',
     alignSelf: 'center',
     fontWeight: 'bold',
-    color: colors.gris,
-    top:30
+    top:30,
+    color:colors.gris
   }
 
 }

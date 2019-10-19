@@ -5,3 +5,6 @@ export * from './save-student-action';
 export * from './login-user-google-action';
 export * from './login-user-google-action';
 export * from './login-user-facebook-action';
+export * from './fetch-students-action';
+export * from './update-userid-action';
+export * from './active-student-action';

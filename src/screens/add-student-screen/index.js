@@ -6,79 +6,85 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-
+import firebase from 'firebase';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions';
 import {BG5} from '../../assets/_images';
 import {default_avatar} from '../../assets/icons';
-import {StudentItem} from '../../components';
+import {StudentItem,LoadingOverlay} from '../../components';
 import styles from './add-student-screen-styles';
-import 'firebase/firestore';
-import firebase from 'firebase';
 import {avatars} from '../../const';
+import {toastShow} from '../../redux/actions/show-error';
 class AddStudent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      studentsdata: [],
-      loader: true,
-    };
   }
-  componentDidMount() {
-    const userid = this.props.userid;
-    this.getStudents(userid);
+  componentDidMount(){
+    const userid=this.props.userid;
+    this.props.fetchStudentsData(userid);
   }
-  getStudents = userid => {
-    const students = [];
-    firebase
-      .firestore()
-      .collection('users')
-      .doc(userid)
-      .collection('students')
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(function(doc) {
-          students.push(doc.data());
-        });
-        this.setState({studentsdata: students, loader: false});
-      });
-  };
+
+
   render() {
     return (
       <ImageBackground
         resizeMode={'stretch'}
         source={BG5}
         style={styles.container}>
+        <LoadingOverlay visible={this.props.loading} />
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            this.props.navigation.navigate('addstudentform');
+            if(this.props.students.length ===4){
+              console.log('nn');
+              alert('you cannot add another student');
+            }
+            else{
+              this.props.navigation.navigate('addstudentform');
+            }
           }}>
           <Text style={styles.textButton}>Add Student</Text>
         </TouchableOpacity>
         <View style={styles.studentsContainer}>
-          {this.state.studentsdata.map((item, index) => (
-            <StudentItem
-              key={index.toString()}
-              source={
-                item.downloadURL.toString().includes('https://firebasestorage')
-                  ? {uri: item.downloadURL.toString()}
-                  : avatars[
-                      avatars.findIndex(obj => obj.name === item.downloadURL)
-                    ].source
-              }
-              label={item.name}
-            />
+        {this.props.students.map((item, index) => (
+          <StudentItem
+          onPress={()=>{
+            this.props.activeStudent(item.name);
+            this.props.navigation.navigate('swiperscreen');
+          }}
+            key={index.toString()}
+           source={
+              item.downloadURL.toString().includes('https://firebasestorage')
+               ? {uri: item.downloadURL.toString()}
+                : avatars[
+                    avatars.findIndex(obj => obj.name === item.downloadURL)].source
+           }
+            label={item.name}
+          />
           ))}
+        </View>
+        <View style={styles.logoutoutcontainer}>
+        <TouchableOpacity onPress={()=>
+          firebase.auth().signOut().then(()=>{
+          console.log('success');
+        }).catch((error)=>
+      {
+         // An error happened.
+       })}>
+        <Text>Log out </Text>
+        </TouchableOpacity>
         </View>
       </ImageBackground>
     );
   }
 }
-const mapStateToProps = ({user}) => {
+
+const mapStateToProps = ({user,student}) => {
   const userid = user.userid;
+  const loading=student.loading;
+  const students=student.students
   return {
-    userid,
+    loading,students,userid
   };
 };
 

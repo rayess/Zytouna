@@ -4,55 +4,46 @@ import { LoginManager,AccessToken,GraphRequest,
 GraphRequestManager, } from "react-native-fbsdk";
 import 'firebase/firestore';
 import firebase from 'firebase';
-export const loginUserFacebbok =(callback)=>{
+import {toastShow} from './show-error';
+export const loginUserFacebbok =(callback,dispatch)=>{
   return dispatch => {
     dispatch({type: FACEBOOKUSERLOGIN});
-    loginFb ();
+    onLoginOrRegister (callback,dispatch);
   }
 
 };
-loginFb =()=>{
-LoginManager.logInWithPermissions(["public_profile"]).then(
-function(result) {
-if (result.isCancelled) {
-  console.log("Login cancelled");
-} else {
-  console.log(
-    "Login success with permissions: " +
-      result.grantedPermissions.toString());
-      AccessToken.getCurrentAccessToken().then(
-        (data) => {
-          console.log(data);
-          const processRequest = new GraphRequest(
-          '/me?fields=name,picture,email.type(large)',
-          null,
-          this.get_Response_Info
-        );
-        // Start the graph request.
-        new GraphRequestManager().addRequest(processRequest).start();
-        }
-      )
-    }
-},
-function(error) {
-console.log("Login fail with error: " + error);
+onLoginOrRegister = (callback,dispatch) => {
+  LoginManager.logInWithPermissions(["public_profile"])
+    .then((result) => {
+      if (result.isCancelled) {
+        return Promise.reject(new Error('The user cancelled the request'));
+      }
+      // Retrieve the access token
+      return AccessToken.getCurrentAccessToken();
+    })
+    .then((data) => {
+      // Create a new Firebase credential with the token
+      const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+      // Login with the credential
+      return firebase.auth().signInWithCredential(credential);
+    })
+    .then((user) => {
+      console.log('facebook user',user);
+      var db = firebase.firestore();
+      db.collection('users')
+        .doc(user.user.uid)
+        .set({name: user.user.displayName})
+        .then(function() {
+          console.log('done');
+         dispatch({type: LOGIN_USER_SUCCES, payload: user.user.uid});
+         callback();
+        });
+    })
+    .catch((error) => {
+      const { code, message } = error;
+      toastShow(message);
+      // For details of error codes, see the docs
+      // The message contains the default Firebase string
+      // representation of the error
+    });
 }
-);
-}
-get_Response_Info =(error, result)=>{
-  if (error) {
-    //Alert for the Error
-    Alert.alert('Error fetching data: ' + error.toString());
-  } else {
-    //response alert
-    var db = firebase.firestore();
-    db.collection('users')
-      .doc(result.id)
-      .set({name: result.name})
-      .then(function() {
-        console.log('done');
-        return dispatch({type: LOGIN_USER_SUCCES, payload: result.id});
-      });
-    console.log(result);
-  }
-};

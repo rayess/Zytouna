@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #import <Firebase.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-
+#import "Orientation.h"
 
 @implementation AppDelegate
 
@@ -51,6 +51,9 @@ return handled;
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
 }
 
 @end

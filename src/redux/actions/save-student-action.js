@@ -4,7 +4,6 @@ import {SAVESTUDENT} from '../actions-types/save-student';
 import {ADDSTUDENTSUCCESS} from '../actions-types/add-student-success';
 import {ADDSTUDENTFAIL} from '../actions-types/add-student-fail';
 import {toastShow} from './show-error';
-
 export const saveStudent = (
   name,
   age,
@@ -33,7 +32,8 @@ addstudent = (iduser, name, age, gender, downloadURL, dispatch, callback) => {
     .set({name: name, age: age, gender: gender, downloadURL: downloadURL})
     .then(() => {
       console.log('done');
-      return dispatch({type: ADDSTUDENTSUCCESS, payload: {name, downloadURL}});
+     dispatch({type: ADDSTUDENTSUCCESS, payload: {name,age,gender,downloadURL}});
+     console.warn('go to ...');
       callback();
     });
 };
@@ -67,7 +67,7 @@ uploadToFirebase = (blob, iduser, name, age, gender, dispatch, callback) => {
         },
         function(error) {
           toastShow(error.message);
-          return dispatch({type: ADDSTUDENTFAIL, payload: error});
+         dispatch({type: ADDSTUDENTFAIL});
         },
         function() {
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
@@ -87,6 +87,7 @@ uploadToFirebase = (blob, iduser, name, age, gender, dispatch, callback) => {
       )
       .catch(error => {
         toastShow(error.message);
+        dispatch({type: ADDSTUDENTFAIL});
         reject(error);
       });
   });
@@ -110,13 +111,11 @@ uriToBlob = (uri, iduser, name, age, gender, dispatch, callback) => {
       );
     };
     xhr.onerror = function() {
-      // something went wrong
-      reject(new Error('uriToBlob failed'));
+    reject(new Error('uriToBlob failed'));
     };
 
     // this helps us get a blob
     xhr.responseType = 'blob';
-
     xhr.open('GET', uri, true);
     xhr.send(null);
   });

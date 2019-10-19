@@ -133,6 +133,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -153,6 +154,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -193,7 +195,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
-   
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
       debugImplementation files(hermesPath + "hermes-debug.aar")

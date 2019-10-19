@@ -22,7 +22,7 @@ const persistConfig = {
   // Storage Method (React Native)
   storage: AsyncStorage,
   // Whitelist (Save Specific Reducers)
-  whitelist: ['toggle', 'user'],
+  whitelist: ['toggle'],
   // Blacklist (Don't Save Specific Reducers)
   blacklist: [],
 };

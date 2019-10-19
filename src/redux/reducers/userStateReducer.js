@@ -2,7 +2,7 @@ import {
   USERSAVE,
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCES,
-  USERLOGIN,
+  USERLOGIN,UPDATEUSERID
 } from '../actions-types';
 import {GOOGLEUSERLOGIN} from '../actions-types/login-user-google';
 import {FACEBOOKUSERLOGIN} from '../actions-types/login-user-facebook';
@@ -14,7 +14,25 @@ const initialState = {
 const userStateReducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
-    case (USERSAVE,USERLOGIN,GOOGLEUSERLOGIN,FACEBOOKUSERLOGIN): {
+    case USERSAVE: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case USERLOGIN: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case GOOGLEUSERLOGIN: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case FACEBOOKUSERLOGIN: {
       return {
         ...state,
         loading: true,
@@ -32,6 +50,12 @@ const userStateReducer = (state = initialState, action) => {
         ...state,
         userid: action.payload,
         loading: false,
+      };
+    }
+    case UPDATEUSERID: {
+      return {
+        ...state,
+        userid: action.payload,
       };
     }
     default: {

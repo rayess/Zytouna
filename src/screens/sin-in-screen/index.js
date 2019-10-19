@@ -5,7 +5,7 @@ import * as actions from '../../redux/actions';
 import {BG3} from '../../assets/_images';
 import {crab} from '../../assets/icons';
 
-import {GoBackButton, UserInput} from '../../components';
+import {GoBackButton, UserInput,LoadingOverlay} from '../../components';
 import styles from './sign-in-screen-styles';
 
 class SignInUser extends React.Component {
@@ -28,6 +28,7 @@ class SignInUser extends React.Component {
             this.props.navigation.goBack();
           }}
         />
+        <LoadingOverlay visible={this.props.loading} />
         <UserInput
           onChangeText={email => this.setState({email: email})}
           value={this.state.email}

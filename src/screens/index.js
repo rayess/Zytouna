@@ -9,6 +9,7 @@ import ChooseLevelAndChapterSwiper from './choose-level-and-chapter-swiper';
 import SignInUser from './sin-in-screen';
 import ChooseAvatar from './choose-avatar-screen';
 import  ChooseChapter from './choose-chapter-screen';
+import Test from './testscreen';
 export {
   SplashScreen,
   SignInUser,
@@ -20,5 +21,6 @@ export {
   SignInFbAndGoogle,
   SignUpScreen,
   ChooseAvatar,
-  ChooseChapter
+  ChooseChapter,
+  Test
 };

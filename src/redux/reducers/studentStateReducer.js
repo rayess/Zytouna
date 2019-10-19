@@ -1,11 +1,10 @@
 import {SAVESTUDENT} from '../actions-types/save-student';
 import {ADDSTUDENTSUCCESS} from '../actions-types/add-student-success';
 import {ADDSTUDENTFAIL} from '../actions-types/add-student-fail';
+import {FETCHSTUDENTDATA,FETCHSTUDENTDATASUCCESS,FETCHSTUDENTDATAFAIL} from '../actions-types';
 const initialState = {
-  error: '',
   loading: false,
-  name:'',
-  downloadURL:'',
+  students:[],
 };
 const studentStateReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -15,10 +14,21 @@ const studentStateReducer = (state = initialState, action) => {
         loading: true,
       };
     }
+    case FETCHSTUDENTDATA: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
     case ADDSTUDENTFAIL: {
       return {
         ...state,
-        error: action.payload,
+        loading: false,
+      };
+    }
+    case FETCHSTUDENTDATAFAIL: {
+      return {
+        ...state,
         loading: false,
       };
     }
@@ -26,10 +36,15 @@ const studentStateReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        name:action.payload.name,
-        downloadURL:action.payload.downloadURL,
-
+        students: [...state.students, action.payload]
       };
+    }
+    case FETCHSTUDENTDATASUCCESS:{
+      return{
+        ...state,
+        loading: false,
+        students: action.payload
+      }
     }
     default: {
       return state;
