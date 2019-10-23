@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import {Avatar} from 'react-native-elements';
 import Overlay from 'react-native-modal-overlay';
 import Toast from 'react-native-root-toast';
 import colors from '../../assets/color';
-import {UserInput,LoadingOverlay} from '../../components';
+import {UserInput, LoadingOverlay} from '../../components';
 import {nautical, finish, arrow_picker, addphoto} from '../../assets/icons';
 import styles from './add-student-form-screen-styles';
 import firebase from 'firebase';
@@ -60,8 +60,15 @@ class AddStudentForm extends React.Component {
       const isAssets = params.uri ? false : true;
       const userid = this.props.userid;
       console.log(userid);
-      this.props.saveStudent(fullname, age, gender, filepath, userid, isAssets,() =>
-        this.props.navigation.navigate('addStudent'));
+      this.props.saveStudent(
+        fullname,
+        age,
+        gender,
+        filepath,
+        userid,
+        isAssets,
+        () => this.props.navigation.navigate('addStudent'),
+      );
     }
   };
   render() {
@@ -83,6 +90,9 @@ class AddStudentForm extends React.Component {
             rounded
             size="large"
             source={avatar}
+            containerStyle={{
+              resizeMode: 'contain',
+            }}
             containerStyle={{marginRight: 15, marginTop: 50}}
             onPress={() => {
               this.props.navigation.navigate('chooseavatar');
@@ -100,7 +110,7 @@ class AddStudentForm extends React.Component {
           />
           <Text style={styles.label}>{'Age'}</Text>
           <UserInput
-            keyboardType='numeric'
+            keyboardType="numeric"
             onChangeText={age => this.setState({age})}
             value={this.state.email}
             placeholder={'Age'}
@@ -176,12 +186,13 @@ class AddStudentForm extends React.Component {
     );
   }
 }
-const mapStateToProps = ({student,user}) => {
-  const loading=student.loading;
-  const userid=user.userid;
+const mapStateToProps = ({student, user}) => {
+  const loading = student.loading;
+  const userid = user.userid;
   return {
-    loading,userid
-  }
+    loading,
+    userid,
+  };
 };
 export default connect(
   mapStateToProps,

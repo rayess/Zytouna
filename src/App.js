@@ -15,7 +15,7 @@ import {
   ChooseLevel,
   ChooseChapter,
   ChooseLevelAndChapterSwiper,
-  Test
+  Test,
 } from './screens';
 import {store, persistor} from './redux/store';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
@@ -43,7 +43,7 @@ const authNavigator = createStackNavigator(
 
 const appNavigator = createStackNavigator(
   {
-    test:Test,
+    test: Test,
     swiperscreen: ChooseLevelAndChapterSwiper,
     choosechapter: ChooseChapter,
     chooselevel: ChooseLevel,
@@ -51,7 +51,6 @@ const appNavigator = createStackNavigator(
     addstudentform: AddStudentForm,
     addStudent: AddStudent,
   },
-
   {
     initialRouteName: 'test',
     headerMode: 'none',

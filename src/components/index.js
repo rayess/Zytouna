@@ -7,4 +7,17 @@ import CloudItem from './cloud-item';
 import LoadingOverlay from './loading-overlay';
 import LessonHeader from './lesson-header';
 import AudioItem from './audio-item';
-export {GoBackButton, ButtonWithIcon, UserInput, StudentItem,AvatarItem,CloudItem,LoadingOverlay,LessonHeader,AudioItem};
+import Wrapper from './wrapper';
+
+export {
+  GoBackButton,
+  ButtonWithIcon,
+  UserInput,
+  StudentItem,
+  AvatarItem,
+  CloudItem,
+  LoadingOverlay,
+  LessonHeader,
+  AudioItem,
+  Wrapper,
+};

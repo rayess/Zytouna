@@ -76,7 +76,8 @@ class ChooseAvatar extends React.Component {
               />
             )}
             numColumns={5}
-            keyExtractor={(item, index) => index.toString()}></FlatList>
+            keyExtractor={(item, index) => index.toString()}
+          />
         </View>
       </ImageBackground>
     );

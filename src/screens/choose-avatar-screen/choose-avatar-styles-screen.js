@@ -36,5 +36,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
+    // backgroundColor: 'red',
   },
 });

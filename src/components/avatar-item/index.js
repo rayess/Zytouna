@@ -1,6 +1,5 @@
 import React from 'react';
 import {TouchableOpacity, Image} from 'react-native';
-import {Avatar} from 'react-native-elements';
 import styles from './avatar-item-styles';
 
 const AvatarItem = props => {
