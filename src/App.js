@@ -12,11 +12,14 @@ import {
   SignInUser,
   AddStudent,
   ChooseAvatar,
-  ChooseLevel,
-  ChooseChapter,
-  ChooseLevelAndChapterSwiper,
-  Test,
-} from './screens';
+  ChooseLevelAndChapterSwiper,ChooseLevel,ChooseChapter1Screen,ChooseChapterScreen2,ChooseChapterScreen3,
+} from './screens/sign-screens';
+import {Lesson1Screen,SchoolThingsActivity,} from './screens/chapters-screens/chapter1-screen';
+import {FeelingsLessonScreen,FeelingActivity} from './screens/chapters-screens/chapter2-screen';
+import {CanActivityScreen,ActivitiesLessonScreen} from './screens/chapters-screens/chapter3-screen';
+import {HaveGotActivityScreen,FoodLessonScreen} from './screens/chapters-screens/chapter4-screen';
+import {OurTheirActivityScreen,SchoolThingScreen} from './screens/chapters-screens/chapter5-screen';
+import {PartyLessonScreen} from './screens/chapters-screens/chapter7-screen';
 import {store, persistor} from './redux/store';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -43,16 +46,29 @@ const authNavigator = createStackNavigator(
 
 const appNavigator = createStackNavigator(
   {
-    test: Test,
+    partylessonscreen:PartyLessonScreen,
+    ourtheiractivityscreen:OurTheirActivityScreen,
+    schoolthingscreen:SchoolThingScreen,
+    havegotactivityscreen:HaveGotActivityScreen,
+    foodlessonscreen:FoodLessonScreen,
+    ourtheirscreenactivity:OurTheirActivityScreen,
+    canactivityscreen:CanActivityScreen,
+    activitieslessonscreen:ActivitiesLessonScreen,
+    feelingactivity:FeelingActivity,
+    feelinglessonscreen:FeelingsLessonScreen,
+    schoolthingsactivity:SchoolThingsActivity,
+    lesson1screen:Lesson1Screen,
+    choosechapterscreen3:ChooseChapterScreen3,
+    choosechapterscreen2:ChooseChapterScreen2,
+    choosechapter1screen:ChooseChapter1Screen,
+    chooselevel:ChooseLevel,
     swiperscreen: ChooseLevelAndChapterSwiper,
-    choosechapter: ChooseChapter,
-    chooselevel: ChooseLevel,
     chooseavatar: ChooseAvatar,
     addstudentform: AddStudentForm,
     addStudent: AddStudent,
   },
   {
-    initialRouteName: 'test',
+    initialRouteName: 'addStudent',
     headerMode: 'none',
   },
 

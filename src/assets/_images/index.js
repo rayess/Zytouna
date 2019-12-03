@@ -8,5 +8,7 @@ import BG7 from './files/BG7.png';
 import BG8 from './files/BG8.png';
 import BG9 from './files/BG9.png';
 import BG10 from './files/BG10.png';
-
-export {BG1, BG2, BG3, BG4, BG5, BG6, BG7, BG8, BG9, BG10};
+import BG11 from './files/BG11.png';
+import BG12 from './files/BG12.png';
+import BG13 from './files/BG13.png';
+export {BG1, BG2, BG3, BG4, BG5, BG6, BG7, BG8, BG9, BG10, BG11, BG12,BG13};
